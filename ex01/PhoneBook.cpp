@@ -1,4 +1,5 @@
 #include "PhoneBook.class.hpp"
+#include <iomanip>
 
 PhoneBook& PhoneBook::operator=(const PhoneBook &copy) {
 	this->n = copy.get_n();
@@ -7,7 +8,6 @@ PhoneBook& PhoneBook::operator=(const PhoneBook &copy) {
 
 PhoneBook::PhoneBook(void) {
 	this->n = 0;
-	std::cout << "In" << std::endl;
 }
 
 PhoneBook::PhoneBook(const PhoneBook &copy)
@@ -27,22 +27,38 @@ void	PhoneBook::set_n(const int n) {
 }
 
 void	PhoneBook::add(void) {
-	this->contacts[this->n].set(this->n);
-	this->n++;
+	if (this->n < this->max)
+	{
+		this->contacts[this->n].set(this->n);
+		this->n++;
+	}
+	else
+		std::cout << "Too many contacts, I can't remember everything dude...";
 }
 
 void	PhoneBook::search(void) {
 	size_t		i = 0;
 	Contact		c;
+	std::string	input;
 
-	std::cout << "   index  |first name|last  name| nickname" << std::endl;
-	while (i < this->n)
+	if (this->n > 0)
 	{
-		this->contacts[i].put_field();
-		++i;
+		std::cout << "     index|first name| last name|  nickname" << std::endl;
+		while (i < this->n)
+		{
+			this->contacts[i].put_field();
+			++i;
+		}
+		std::cout << "Which one of those contacts do you wish to check ?" << std::endl;
+		std::getline (std::cin, input);
+		i = std::stoi(input);
+		if (i >= this->n)
+			std::cout << "indice out of range." << std::endl;
+		else
+			std::cout << this->contacts[i] << std::endl;
 	}
-	std::cin >> i;
-	std::cout << "I = : " << i << std::endl;
+	else
+		std::cout << "I'm sorry but you have no contacts." << std::endl;
 }
 
 int		PhoneBook::full(void) {

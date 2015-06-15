@@ -10,10 +10,10 @@ public:
 	Contact(const Contact &copy);
 	~Contact();
 	Contact& operator= (const Contact &copy);
-
 	std::string		format_string(std::string src) const;
 	void			put_field(void) const;
 	void			print(void) const;
+	void			print(std::ostream &flux) const;
 
 //			Getters
 	size_t		get_i(void) const;
@@ -25,6 +25,7 @@ public:
 	std::string	get_email_address(void) const;
 	std::string	get_phone_number(void) const;
 	std::string	get_birthday_date(void) const;
+	std::string	get_favorite_meal(void) const;
 	std::string	get_underwear_color(void) const;
 	std::string	get_darkest_secret(void) const;
 
@@ -39,6 +40,7 @@ public:
 	void		set_email_address(const std::string email_address);
 	void		set_phone_number(const std::string phone_number);
 	void		set_birthday_date(const std::string birthday_date);
+	void		set_favorite_meal(const std::string favorite_meal);
 	void		set_underwear_color(const std::string underwear_color);
 	void		set_darkest_secret(const std::string darkest_secret);
 
@@ -52,8 +54,11 @@ private:
 	std::string		email_address;
 	std::string		phone_number;
 	std::string		birthday_date;
+	std::string		favorite_meal;
 	std::string		underwear_color;
 	std::string		darkest_secret;
 };
+
+std::ostream &operator<<(std::ostream &flux, const Contact &contact);
 
 #endif

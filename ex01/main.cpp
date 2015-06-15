@@ -1,21 +1,26 @@
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
 
+std::ostream &operator<<(std::ostream& flux, const Contact& c)  {
+    c.print(flux) ;
+    return (flux);
+}
+
 int		main(void) {
 	PhoneBook	book;
-	std::string	str;
+	std::string	input;
 
 	while (!book.full())
 	{
-		std::getline (std::cin, str);
-		if (str == "EXIT")
+		std::getline (std::cin, input);
+		if (input == "EXIT")
 			break ;
-		else if (str == "ADD")
+		else if (input == "ADD")
 			book.add();
-		else if (str == "SEARCH")
+		else if (input == "SEARCH")
 			book.search();
 		else
-			std::cout << "Unknown commant : '" << str << "' use ADD, SEARCH or EXIT instead" << std::endl;
+			std::cout << "Unknown commant : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
 	}
 	return (0);
 }

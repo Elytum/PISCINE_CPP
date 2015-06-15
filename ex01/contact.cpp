@@ -1,8 +1,9 @@
 #include "Contact.class.hpp"
 #include <iomanip>
 #define MAXWIDTH 10
+#define SEPARATOR " : "
 
-Contact& Contact::operator=(const Contact &copy) {
+Contact &Contact::operator=(const Contact &copy) {
 	this->first_name = copy.get_first_name();
 	this->last_name = copy.get_last_name();
 	this->nickname = copy.get_nickname();
@@ -38,12 +39,31 @@ Contact::~Contact(void) {
 }
 
 void			Contact::print(void) const {
-	std::cout.setf(std::ios::right, std::ios::adjustfield);
-	std::cout	<< std::setw(MAXWIDTH) << std::setfill(' ') << this->i
-				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->first_name)
-				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->last_name)
-				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->nickname)
-				<< std::endl;
+	std::cout << "First name" << SEPARATOR << this->first_name << std::endl
+				<< "Last name" << SEPARATOR << this->last_name << std::endl
+				<< "Nickname" << SEPARATOR << this->nickname << std::endl
+				<< "login" << SEPARATOR << this->login << std::endl
+				<< "Postal address" << SEPARATOR << this->postal_address << std::endl
+				<< "Email address" << SEPARATOR << this->email_address << std::endl
+				<< "Phone number" << SEPARATOR << this->phone_number << std::endl
+				<< "Birthday date" << SEPARATOR << this->birthday_date << std::endl
+				<< "Favorite meal" << SEPARATOR << this->favorite_meal << std::endl
+				<< "Underwear color" << SEPARATOR << this->underwear_color << std::endl
+				<< "Darkest secret" << SEPARATOR << this->darkest_secret << std::endl;
+}
+
+void			Contact::print(std::ostream &flux) const {
+	flux << "First name" << SEPARATOR << this->first_name << std::endl
+				<< "Last name" << SEPARATOR << this->last_name << std::endl
+				<< "Nickname" << SEPARATOR << this->nickname << std::endl
+				<< "login" << SEPARATOR << this->login << std::endl
+				<< "Postal address" << SEPARATOR << this->postal_address << std::endl
+				<< "Email address" << SEPARATOR << this->email_address << std::endl
+				<< "Phone number" << SEPARATOR << this->phone_number << std::endl
+				<< "Birthday date" << SEPARATOR << this->birthday_date << std::endl
+				<< "Favorite meal" << SEPARATOR << this->favorite_meal << std::endl
+				<< "Underwear color" << SEPARATOR << this->underwear_color << std::endl
+				<< "Darkest secret" << SEPARATOR << this->darkest_secret << std::endl;
 }
 
 std::string			Contact::format_string(std::string src) const {
@@ -132,6 +152,8 @@ void		Contact::set(const size_t i) {
 	std::getline (std::cin, this->phone_number);
 	std::cout << "Birthday date :" << std::endl;
 	std::getline (std::cin, this->birthday_date);
+	std::cout << "Favorite meal :" << std::endl;
+	std::getline (std::cin, this->favorite_meal);
 	std::cout << "Underwear color :" << std::endl;
 	std::getline (std::cin, this->underwear_color);
 	std::cout << "Darkest secret :" << std::endl;
