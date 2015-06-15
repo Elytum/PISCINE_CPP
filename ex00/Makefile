@@ -12,30 +12,37 @@
 
 # -------------Compilateur------------------#
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror=
 #--------------Name-------------------------#
 NAME = megaphone
 
 #--------------Sources----------------------#
-FILES =	megaphone.cpp
+SRCS =	megaphone.cpp
 
-CURRENT_DIR = $(shell pwd)/$(NAME)
+INC = -I./
+
+OBJS	=	$(SRCS:.cpp=.o)
+
 #--------------Actions----------------------#
 
-all: $(NAME)
+all: clean $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) $(FILES) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CCFLAGS) -c  $(INC) $< -o $@
 
 test: $(NAME)
-	./megaphone "shhhhh... I think the students are asleep..."
-	./megaphone Damnit " ! " "Sorry students, I thought this thing was off."
-	./megaphone
+	./$(NAME) "shhhhh... I think the students are asleep..."
+	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
+	./$(NAME)
 
 clean:
-		rm -Rf $(NAME)
+	rm -f $(OBJS)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 

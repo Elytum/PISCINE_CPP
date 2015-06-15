@@ -58,6 +58,9 @@ void	PhoneBook::search(void) {
 		catch (const std::invalid_argument &ia) {
 			std::cerr << "Invalid argument: " << ia.what() << std::endl;
 			return ;
+		} catch (const std::out_of_range &ia) {
+			std::cerr << "Invalid argument: " << ia.what() << std::endl;
+			return ;
 		}
 		if (i >= this->n)
 			std::cerr << "Indice out of range." << std::endl;

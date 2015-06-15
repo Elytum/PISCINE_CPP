@@ -12,29 +12,34 @@
 
 # -------------Compilateur------------------#
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror -I./
+CFLAGS = -Wall -Wextra -Werror=
 #--------------Name-------------------------#
 NAME = phonebook
 
 #--------------Sources----------------------#
-FILES =	main.cpp			\
+SRCS =	main.cpp			\
 		PhoneBook.class.cpp	\
 		contact.class.cpp
 
+INC = -I./
 
-CURRENT_DIR = $(shell pwd)/$(NAME)
+OBJS	=	$(SRCS:.cpp=.o)
+
 #--------------Actions----------------------#
 
 all: clean $(NAME)
 
-$(NAME):
-	$(CC) $(CFLAGS) $(FILES) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CCFLAGS) -c  $(INC) $< -o $@
 
 clean:
-	@rm -Rf $(NAME)
+	rm -f $(OBJS)
 
-fclean:
-	rm -Rf $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
