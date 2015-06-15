@@ -33,7 +33,7 @@ void	PhoneBook::add(void) {
 		this->n++;
 	}
 	else
-		std::cout << "Too many contacts, I can't remember everything dude...";
+		std::cerr << "Too many contacts, I can't remember everything dude..." << std::endl;
 }
 
 void	PhoneBook::search(void) {
@@ -61,12 +61,12 @@ void	PhoneBook::search(void) {
 			return ;
 		}
 		if (i >= this->n)
-			std::cout << "Indice out of range." << std::endl;
+			std::cerr << "Indice out of range." << std::endl;
 		else
 			std::cout << this->contacts[i];
 	}
 	else
-		std::cout << "I'm sorry but you have no contacts." << std::endl;
+		std::cerr << "I'm sorry but you have no contacts." << std::endl;
 }
 
 int		PhoneBook::full(void) {

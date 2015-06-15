@@ -18,7 +18,7 @@ int		main(void) {
 			std::cout << "EOF reached" << std::endl;
 			break;
 		} else if (std::cin.bad()) {
-			std::cout << "Error with input" << std::endl;
+			std::cerr << "Error with input" << std::endl;
 			break;
 		}
 		if (input == "EXIT")
@@ -28,7 +28,7 @@ int		main(void) {
 		else if (input == "SEARCH")
 			book.search();
 		else
-			std::cout << "Unknown commant : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
+			std::cerr << "Unknown commant : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
 	}
 	return (0);
 }
