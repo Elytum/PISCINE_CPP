@@ -10,8 +10,7 @@ PhoneBook::PhoneBook(void) {
 	this->n = 0;
 }
 
-PhoneBook::PhoneBook(const PhoneBook &copy)
-{
+PhoneBook::PhoneBook(const PhoneBook &copy) {
 	(*this) = copy;
 }
 

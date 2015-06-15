@@ -17,9 +17,9 @@ CFLAGS = -Wall -Wextra -Werror -I./
 NAME = phonebook
 
 #--------------Sources----------------------#
-FILES =	main.cpp		\
-		PhoneBook.cpp	\
-		contact.cpp
+FILES =	main.cpp			\
+		PhoneBook.class.cpp	\
+		contact.class.cpp
 
 
 CURRENT_DIR = $(shell pwd)/$(NAME)
