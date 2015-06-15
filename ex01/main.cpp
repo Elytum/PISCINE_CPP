@@ -28,7 +28,7 @@ int		main(void) {
 		else if (input == "SEARCH")
 			book.search();
 		else
-			std::cerr << "Unknown commant : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
+			std::cerr << "Unknown command : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
 	}
 	return (0);
 }
