@@ -1,4 +1,4 @@
-#include "Contact.class.hpp"
+#include <Contact.class.hpp>
 #include <iomanip>
 #define MAXWIDTH 10
 #define SEPARATOR " : "
@@ -39,17 +39,7 @@ Contact::~Contact(void) {
 }
 
 void			Contact::print(void) const {
-	std::cout << "First name" << SEPARATOR << this->first_name << std::endl
-				<< "Last name" << SEPARATOR << this->last_name << std::endl
-				<< "Nickname" << SEPARATOR << this->nickname << std::endl
-				<< "login" << SEPARATOR << this->login << std::endl
-				<< "Postal address" << SEPARATOR << this->postal_address << std::endl
-				<< "Email address" << SEPARATOR << this->email_address << std::endl
-				<< "Phone number" << SEPARATOR << this->phone_number << std::endl
-				<< "Birthday date" << SEPARATOR << this->birthday_date << std::endl
-				<< "Favorite meal" << SEPARATOR << this->favorite_meal << std::endl
-				<< "Underwear color" << SEPARATOR << this->underwear_color << std::endl
-				<< "Darkest secret" << SEPARATOR << this->darkest_secret << std::endl;
+	print(std::cout);
 }
 
 void			Contact::print(std::ostream &flux) const {
@@ -78,11 +68,11 @@ std::string			Contact::format_string(std::string src) const {
 
 void			Contact::put_field(void) const {
 	std::cout.setf(std::ios::right, std::ios::adjustfield);
-	std::cout	<< std::setw(MAXWIDTH) << std::setfill(' ') << this->i
+	std::cout	<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << this->i
 				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->first_name)
 				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->last_name)
 				<< "|" << std::setw(MAXWIDTH) << std::setfill(' ') << format_string(this->nickname)
-				<< std::endl;
+				<< "|" << std::endl;
 }
 
 //			Getters
@@ -136,27 +126,27 @@ std::string		Contact::get_darkest_secret(void) const {
 
 void		Contact::set(const size_t i) {
 	this->i = i;
-	std::cout << "First name :" << std::endl;
+	std::cout << "First name : ";
 	std::getline (std::cin, this->first_name);
-	std::cout << "Last name :" << std::endl;
+	std::cout << "Last name : ";
 	std::getline (std::cin, this->last_name);
-	std::cout << "Nick name :" << std::endl;
+	std::cout << "Nick name : ";
 	std::getline (std::cin, this->nickname);
-	std::cout << "Login :" << std::endl;
+	std::cout << "Login : ";
 	std::getline (std::cin, this->login);
-	std::cout << "Postal address :" << std::endl;
+	std::cout << "Postal address : ";
 	std::getline (std::cin, this->postal_address);
-	std::cout << "Email address :" << std::endl;
+	std::cout << "Email address : ";
 	std::getline (std::cin, this->email_address);
-	std::cout << "Phone number:" << std::endl;
+	std::cout << "Phone number: ";
 	std::getline (std::cin, this->phone_number);
-	std::cout << "Birthday date :" << std::endl;
+	std::cout << "Birthday date : ";
 	std::getline (std::cin, this->birthday_date);
-	std::cout << "Favorite meal :" << std::endl;
+	std::cout << "Favorite meal : ";
 	std::getline (std::cin, this->favorite_meal);
-	std::cout << "Underwear color :" << std::endl;
+	std::cout << "Underwear color : ";
 	std::getline (std::cin, this->underwear_color);
-	std::cout << "Darkest secret :" << std::endl;
+	std::cout << "Darkest secret : ";
 	std::getline (std::cin, this->darkest_secret);
 }
 

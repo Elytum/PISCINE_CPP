@@ -1,4 +1,4 @@
-#include "PhoneBook.class.hpp"
+#include <PhoneBook.class.hpp>
 #include <iomanip>
 
 PhoneBook& PhoneBook::operator=(const PhoneBook &copy) {
@@ -18,11 +18,11 @@ PhoneBook::PhoneBook(const PhoneBook &copy)
 PhoneBook::~PhoneBook(void) {
 }
 
-int		PhoneBook::get_n(void) const {
+size_t	PhoneBook::get_n(void) const {
 	return (this->n);
 }
 
-void	PhoneBook::set_n(const int n) {
+void	PhoneBook::set_n(const size_t n) {
 	this->n = n;
 }
 
@@ -43,19 +43,27 @@ void	PhoneBook::search(void) {
 
 	if (this->n > 0)
 	{
-		std::cout << "     index|first name| last name|  nickname" << std::endl;
+		std::cout << "---------------------------------------------" << std::endl;
+		std::cout << "|     index|first name| last name|  nickname|" << std::endl;
 		while (i < this->n)
 		{
 			this->contacts[i].put_field();
 			++i;
 		}
-		std::cout << "Which one of those contacts do you wish to check ?" << std::endl;
+		std::cout << "---------------------------------------------" << std::endl;
+		std::cout << "Which one of those contacts do you wish to check : ";
 		std::getline (std::cin, input);
-		i = std::stoi(input);
+		try {
+			i = std::stoi(input);
+		}
+		catch (const std::invalid_argument &ia) {
+			std::cerr << "Invalid argument: " << ia.what() << std::endl;
+			return ;
+		}
 		if (i >= this->n)
-			std::cout << "indice out of range." << std::endl;
+			std::cout << "Indice out of range." << std::endl;
 		else
-			std::cout << this->contacts[i] << std::endl;
+			std::cout << this->contacts[i];
 	}
 	else
 		std::cout << "I'm sorry but you have no contacts." << std::endl;

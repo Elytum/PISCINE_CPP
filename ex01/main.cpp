@@ -1,5 +1,5 @@
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
+#include <PhoneBook.class.hpp>
+#include <Contact.class.hpp>
 
 std::ostream &operator<<(std::ostream& flux, const Contact& c)  {
     c.print(flux) ;
@@ -12,9 +12,17 @@ int		main(void) {
 
 	while (!book.full())
 	{
+		std::cout << "Please type your command (ADD, SEARCH or EXIT) : ";
 		std::getline (std::cin, input);
+		if (std::cin.eof()) {
+			std::cout << "EOF reached" << std::endl;
+			break;
+		} else if (std::cin.bad()) {
+			std::cout << "Error with input" << std::endl;
+			break;
+		}
 		if (input == "EXIT")
-			break ;
+			break;
 		else if (input == "ADD")
 			book.add();
 		else if (input == "SEARCH")
