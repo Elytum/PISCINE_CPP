@@ -2,11 +2,13 @@
 # define PHONE_BOOK_HPP
 
 #include <iostream>
-#include <Contact.class.hpp>
+#include <Contact.hpp>
 
 class PhoneBook {
 
+
 public:
+
 	PhoneBook(void);
 	PhoneBook(const PhoneBook &copy);
 	~PhoneBook(void);
@@ -18,6 +20,7 @@ public:
 	int		full(void);
 
 private:
+
 	const static size_t	max = 8;
 	Contact				contacts[max];
 	size_t				n;

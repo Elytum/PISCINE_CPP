@@ -3,9 +3,12 @@
 
 #include <iostream>
 
-class Contact
-{
+class Contact {
+
+
+
 public:
+
 	Contact();
 	Contact(const Contact &copy);
 	~Contact();
@@ -45,6 +48,7 @@ public:
 	void		set_darkest_secret(const std::string darkest_secret);
 
 private:
+
 	int				i;
 	std::string		first_name;
 	std::string		last_name;

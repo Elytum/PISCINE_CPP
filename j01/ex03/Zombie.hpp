@@ -8,8 +8,6 @@ class Zombie {
 
 public:
 
-	typedef Zombie	t;
-
 	Zombie( void );
 	Zombie( std::string name, std::string type );
 	~Zombie( void );

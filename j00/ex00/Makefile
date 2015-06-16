@@ -31,7 +31,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CCFLAGS) -c  $(INC) $< -o $@
+	$(CC) $(CFLAGS) -c $(INC) $< -o $@
 
 test: $(NAME)
 	./$(NAME) "shhhhh... I think the students are asleep..."

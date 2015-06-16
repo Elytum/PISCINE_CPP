@@ -5,8 +5,6 @@ class Pony {
 
 public:
 
-	typedef Pony	t;
-
 	Pony( void );
 	~Pony( void );
 

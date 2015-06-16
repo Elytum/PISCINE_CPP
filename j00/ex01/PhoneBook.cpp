@@ -1,4 +1,4 @@
-#include <PhoneBook.class.hpp>
+#include <PhoneBook.hpp>
 #include <iomanip>
 
 PhoneBook& PhoneBook::operator=(const PhoneBook &copy) {
@@ -6,8 +6,7 @@ PhoneBook& PhoneBook::operator=(const PhoneBook &copy) {
 	return (*this);
 }
 
-PhoneBook::PhoneBook(void) {
-	this->n = 0;
+PhoneBook::PhoneBook(void) : n(0) {
 }
 
 PhoneBook::PhoneBook(const PhoneBook &copy) {
@@ -18,7 +17,7 @@ PhoneBook::~PhoneBook(void) {
 }
 
 size_t	PhoneBook::get_n(void) const {
-	return (this->n);
+	return (n);
 }
 
 void	PhoneBook::set_n(const size_t n) {
@@ -26,13 +25,13 @@ void	PhoneBook::set_n(const size_t n) {
 }
 
 void	PhoneBook::add(void) {
-	if (this->n < this->max)
+	if (n < max)
 	{
-		this->contacts[this->n].set(this->n);
-		this->n++;
+		contacts[n].set(n);
+		n++;
 	}
 	else
-		std::cerr << "Too many contacts, I can't remember everything dude..." << std::endl;
+		std::cout << "Too many contacts, I can't remember everything dude..." << std::endl;
 }
 
 void	PhoneBook::search(void) {
@@ -40,13 +39,13 @@ void	PhoneBook::search(void) {
 	Contact		c;
 	std::string	input;
 
-	if (this->n > 0)
+	if (n > 0)
 	{
 		std::cout << "---------------------------------------------" << std::endl;
 		std::cout << "|     index|first name| last name|  nickname|" << std::endl;
-		while (i < this->n)
+		while (i < n)
 		{
-			this->contacts[i].put_field();
+			contacts[i].put_field();
 			++i;
 		}
 		std::cout << "---------------------------------------------" << std::endl;
@@ -56,22 +55,22 @@ void	PhoneBook::search(void) {
 			i = std::stoi(input);
 		}
 		catch (const std::invalid_argument &ia) {
-			std::cerr << "Invalid argument: " << ia.what() << std::endl;
+			std::cout << "Invalid argument: " << ia.what() << std::endl;
 			return ;
 		} catch (const std::out_of_range &ia) {
-			std::cerr << "Invalid argument: " << ia.what() << std::endl;
+			std::cout << "Invalid argument: " << ia.what() << std::endl;
 			return ;
 		}
-		if (i >= this->n)
-			std::cerr << "Indice out of range." << std::endl;
+		if (i >= n)
+			std::cout << "Indice out of range." << std::endl;
 		else
-			std::cout << this->contacts[i];
+			std::cout << contacts[i];
 	}
 	else
-		std::cerr << "I'm sorry but you have no contacts." << std::endl;
+		std::cout << "I'm sorry but you have no contacts." << std::endl;
 }
 
 int		PhoneBook::full(void) {
-	return (this->n > max);
+	return (n > max);
 }
 

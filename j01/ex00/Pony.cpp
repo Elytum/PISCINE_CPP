@@ -91,7 +91,7 @@ Pony::Pony( void ) {
 
 Pony::~Pony( void ) {
 	std::cout << "Just destructed a pony." << std::endl;
-	this->die();
+	die();
 }
 
 Pony		Pony::ponyOnTheStack( void ) {
@@ -119,15 +119,15 @@ void		Pony::print(void) const {
 }
 
 void		Pony::print(std::ostream &flux) const {
-	flux << "A poney, just born, said his name : \"" << this->name << "\", what a surprise !" << std::endl;
+	flux << "A poney, just born, said his name : \"" << name << "\", what a surprise !" << std::endl;
 }
 
 void		Pony::show(void) const {
-	std::cout << this->image << std::endl;
+	std::cout << image << std::endl;
 }
 
 void		Pony::die(void) const {
-	std::cout << this->death << std::endl;
+	std::cout << death << std::endl;
 }
 
 std::ostream &operator<<(std::ostream& flux, const Pony& p)  {

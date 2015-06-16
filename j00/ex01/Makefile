@@ -17,9 +17,9 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = phonebook
 
 #--------------Sources----------------------#
-SRCS =	main.cpp			\
-		PhoneBook.class.cpp	\
-		contact.class.cpp
+SRCS =	main.cpp		\
+		PhoneBook.cpp	\
+		Contact.cpp
 
 INC = -I./
 

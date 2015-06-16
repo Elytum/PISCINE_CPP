@@ -1,10 +1,5 @@
-#include <PhoneBook.class.hpp>
-#include <Contact.class.hpp>
-
-std::ostream &operator<<(std::ostream& flux, const Contact& c)  {
-    c.print(flux) ;
-    return (flux);
-}
+#include <PhoneBook.hpp>
+#include <Contact.hpp>
 
 int		main(void) {
 	PhoneBook	book;
@@ -18,7 +13,7 @@ int		main(void) {
 			std::cout << "EOF reached" << std::endl;
 			break;
 		} else if (std::cin.bad()) {
-			std::cerr << "Error with input" << std::endl;
+			std::cout << "Error with input" << std::endl;
 			break;
 		}
 		if (input == "EXIT")
@@ -28,7 +23,7 @@ int		main(void) {
 		else if (input == "SEARCH")
 			book.search();
 		else
-			std::cerr << "Unknown command : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
+			std::cout << "Unknown command : '" << input << "' use ADD, SEARCH or EXIT instead." << std::endl;
 	}
 	return (0);
 }

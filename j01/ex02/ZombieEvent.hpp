@@ -10,15 +10,13 @@ class ZombieEvent {
 
 public:
 
-	typedef ZombieEvent	t;
-
 	ZombieEvent( void );
 	~ZombieEvent( void );
 
-	void					setZombieType( std::string type );
-	Zombie					*newZombie( std::string name ) const;
 	static std::string		randomName( void );
 	void					randomChump( void ) const;
+	Zombie					*newZombie( std::string name ) const;
+	void					setZombieType( std::string type );
 
 private:
 	std::string			type;

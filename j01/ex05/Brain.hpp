@@ -8,8 +8,6 @@ class Brain {
 
 public:
 
-	typedef Brain	t;
-
 	Brain( void );
 	~Brain( void );
 

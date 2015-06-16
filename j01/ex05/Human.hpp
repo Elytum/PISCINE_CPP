@@ -9,8 +9,6 @@ class Human {
 
 public:
 
-	typedef Human	t;
-
 	Human( void );
 	~Human( void );
 
@@ -18,6 +16,7 @@ public:
 	Brain			&getBrain( void ) ;
 
 private:
+	
 	Brain		brain;
 };
 
