@@ -17,11 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = phonebook
 
 #--------------Sources----------------------#
-SRCS =	main.cpp		\
-		PhoneBook.cpp	\
-		Contact.cpp
-
-INC = -I./
+SRCS =	main.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -30,10 +26,10 @@ OBJS	=	$(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(CCFLAGS) -c  $(INC) $< -o $@
+	$(CC) $(CCFLAGS) -c  $< -o $@
 
 clean:
 	rm -f $(OBJS)

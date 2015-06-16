@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	ZombieHorde	horde = ZombieHorde(100);
+	ZombieHorde	horde = ZombieHorde(10);
 
 	horde.announce();
 	return (0);

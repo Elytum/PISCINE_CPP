@@ -44,7 +44,7 @@ std::string	Zombie::randomName( void ) {
 
 Zombie::Zombie( void ) {
 	this->name = Zombie::randomName();
-	this->type = "Unknown";
+	this->type = "Zombie";
 }
 
 Zombie::Zombie( std::string name, std::string type ) {
