@@ -1,3 +1,6 @@
+#ifndef LOGGER_HPP
+# define LOGGER_HPP
+
 #include <iostream>
 #include <fstream>
 
@@ -22,3 +25,5 @@ class Logger
 		std::string		filePath;
 		bool			goodOpen;
 };
+
+#endif

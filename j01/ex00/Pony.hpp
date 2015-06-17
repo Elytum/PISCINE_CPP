@@ -1,3 +1,6 @@
+#ifndef PONY_HPP
+# define PONY_HPP
+
 #include <iostream>
 
 class Pony {
@@ -23,3 +26,5 @@ private:
 };
 
 std::ostream &operator<<(std::ostream &flux, const Pony &pony);
+
+#endif

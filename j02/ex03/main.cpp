@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Fixed.hpp"
 
+using namespace fix;
+
 int main( void ) {
 Fixed a;
 Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );

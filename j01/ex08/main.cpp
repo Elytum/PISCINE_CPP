@@ -2,7 +2,7 @@
 
 int		main(void)
 {
-	std::string		fact[] = {"Jon", "Snow", "est", "mort"};
+	std::string		fact[] = {"Jon", "Snow", "is", "dead"};
 	std::string		actions[] = {"melee", "ranged", "intimidate"};
 	Human			shell;
 

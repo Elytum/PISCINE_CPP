@@ -1,3 +1,6 @@
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
 #include <iostream>
 
 class Fixed
@@ -40,3 +43,5 @@ class Fixed
 };
 
 std::ostream &operator<<( std::ostream &flux, const Fixed &fixed );
+
+#endif

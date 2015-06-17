@@ -1,3 +1,6 @@
+#ifndef HUMAN_HPP
+# define HUMAN_HPP
+
 #include <iostream>
 
 class Human
@@ -9,3 +12,7 @@ class Human
 	public:
 	void action(std::string const & action_name, std::string const & target);
 };
+
+
+
+#endif

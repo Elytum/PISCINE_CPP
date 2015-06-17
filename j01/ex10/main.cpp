@@ -3,7 +3,7 @@
 
 std::string		file_to_string(std::string const & path, std::string const & programName)
 {
-	std::ifstream	ifs(path);
+	std::ifstream	ifs(path, std::ios_base::app);
 	std::string		content;
 
 	if (!ifs.good()) {
