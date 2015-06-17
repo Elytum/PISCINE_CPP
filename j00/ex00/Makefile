@@ -25,7 +25,7 @@ OBJS	=	$(SRCS:.cpp=.o)
 
 #--------------Actions----------------------#
 
-all: clean $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
