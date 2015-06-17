@@ -20,13 +20,13 @@ int		Account::_totalNbDeposits = 0;
 int		Account::_totalNbWithdrawals = 0;
 
 void	Account::_displayTimestamp( void ) {
-	time_t     now = time(0);
-    struct tm  tstruct;
-    char       buf[80];
+	time_t		now = time(0);
+	struct tm	tstruct;
+	char		buf[80];
 
-    tstruct = *localtime(&now);
-    strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S]", &tstruct);
-    std::cout << buf;
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S]", &tstruct);
+	std::cout << buf;
 }
 
 int		Account::checkAmount( void ) const {

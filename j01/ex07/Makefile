@@ -14,7 +14,7 @@
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror
 #--------------Name-------------------------#
-NAME = phonebook
+NAME = sed
 
 #--------------Sources----------------------#
 SRCS =	main.cpp
