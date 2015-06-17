@@ -23,7 +23,8 @@ std::string		file_to_string(std::string path)
 	std::string		content;
 
 	content.assign( (std::istreambuf_iterator<char>(ifs) ),
-	                (std::istreambuf_iterator<char>()    ) );
+					(std::istreambuf_iterator<char>()    ) );
+	ifs.close();
 	return (content);
 }
 

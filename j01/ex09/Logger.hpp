@@ -20,4 +20,5 @@ class Logger
 		void			logToFile(std::string const & target);
 
 		std::string		filePath;
+		bool			goodOpen;
 };

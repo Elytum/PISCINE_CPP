@@ -20,12 +20,23 @@ std::string		Logger::getTimestamp( void ) const {
 void			Logger::append_to_file(std::string const & path, std::string const & string) const {
 	std::ofstream	file;
 
-	file.open(path, std::ios_base::app);
-	file << string;
-	file.close();
+	if (this->goodOpen) {
+		file.open(path, std::ios_base::app);
+		file << string;
+		file.close();
+	}
 }
 
 Logger::Logger( std::string const filePath ) : filePath(filePath) {
+	std::ofstream	file;
+
+	file.open(filePath, std::ios_base::app);
+	if (!file.good()) {
+		file.close();
+		std::cout << strerror(errno) << std::endl;
+		goodOpen = false;
+	} else
+		goodOpen = true;
 }
 
 Logger::~Logger() {
