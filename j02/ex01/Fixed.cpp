@@ -14,7 +14,7 @@ Fixed::Fixed( int const & value ) {
 Fixed::Fixed( float const & value ) {
 	std::cout << "Float constructor called" << std::endl;
 
-	rawBits = static_cast<int>(value * (1 << Fixed::fractionBits));
+	rawBits = roundf(value * (Fixed::fractionBits * 32));
 }
 
 Fixed::Fixed( Fixed const & cpy ) {
@@ -34,7 +34,7 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (static_cast<float>(rawBits) / (1 << Fixed::fractionBits));
+	return (float)rawBits / (Fixed::fractionBits * 32);
 }
 
 int		Fixed::toInt( void ) const {
