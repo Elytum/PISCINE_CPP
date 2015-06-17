@@ -1,78 +1,20 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-#include <bitset>
-
-void put_bin(int val)
-{
-	const int		max = sizeof(val) * 8 - 1;
-
-	int i = max;
-	std::cout << "0b";
-	while (true) {
-		if (val & 0b10000000000000000000000000000000)
-			std::cout << '1';
-		else
-			std::cout << '0';
-		if (i == 0)
-			break;
-		--i;
-		val <<= 1;
-	}
-}
-
-void Fixed::put_fixed( void )
-{
-	const int		max = sizeof(this->getRawBits()) * 8 - 1;
-
-	int				val = this->getRawBits();
-	int				i = max;
-
-	std::cout << "[";
-	while (true) {
-		if (i == Fixed::fractionBits - 1)
-			std::cout << " ";
-		if (val & 0b10000000000000000000000000000000)
-			std::cout << '1';
-		else
-			std::cout << '0';
-		if (i == 0)
-			break;
-		--i;
-		val <<= 1;
-	}
-	std::cout << "]";
-}
-
 Fixed::Fixed( void ) : rawBits(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed( int const & value ) {
-	const int	max = (sizeof(int) * 8);
-	const int	signed_bit = max - 1;
-	const int	middle = max - Fixed::fractionBits;
+	std::cout << "Int constructor called" << std::endl;
 
-
-	rawBits = 0;
-	int			i = 0;
-
-	rawBits |= (1 << signed_bit);
-	while (i != middle) {
-		if ((value >> i) & 1) {
-			rawBits |= 1 << (i + Fixed::fractionBits);
-		}
-		++i;
-	}
-					// std::cout << "value: ";
-					// put_bin(value);
-					// std::cout << ", rawBits: ";
-					// this->put_fixed();
-					// std::cout << std::endl;
+	rawBits = value << Fixed::fractionBits;
 }
 
-Fixed::Fixed( float const & rawBits ) : rawBits(rawBits) {
+Fixed::Fixed( float const & value ) {
 	std::cout << "Float constructor called" << std::endl;
+
+	rawBits = static_cast<int>(value * (1 << Fixed::fractionBits));
 }
 
 Fixed::Fixed( Fixed const & cpy ) {
@@ -92,25 +34,11 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (this->rawBits);
+	return (static_cast<float>(rawBits) / (1 << Fixed::fractionBits));
 }
 
 int		Fixed::toInt( void ) const {
-	const int	max = (sizeof(int) * 8) - 1;
-	const int	signed_bit = max - 1;
-	const int	middle = max - Fixed::fractionBits;
-
-	int			i = 0;
-	int			value = 0;
-
-	if (rawBits >> signed_bit & 1)
-		value |= 1 << signed_bit;
-	while (i != middle) {
-		if ((rawBits >> (i + Fixed::fractionBits)) & 1)
-			value |= 1 << i;
-		++i;
-	}
-	return (value);
+	return (rawBits >> Fixed::fractionBits);
 }
 
 void	Fixed::operator=(Fixed const & arg) {
@@ -119,6 +47,6 @@ void	Fixed::operator=(Fixed const & arg) {
 }
 
 std::ostream &operator<<(std::ostream& flux, const Fixed& fix)  {
-	flux << fix.toInt();
+	flux << fix.toFloat();
 	return (flux);
 }

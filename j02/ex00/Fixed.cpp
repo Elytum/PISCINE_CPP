@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-Fixed::Fixed( void ) : value(0) {
+Fixed::Fixed( void ) : rawBits(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -10,7 +10,7 @@ Fixed::Fixed( Fixed const & cpy ) {
 	(*this) = cpy;
 }
 
-Fixed::~Fixed( void ) {
+Fixed::~Fixed(void) {
 	std::cout << "Destructor called" << std::endl;
 }
 
@@ -22,7 +22,20 @@ void	Fixed::setRawBits( int const raw ) {
 	rawBits = raw;
 }
 
+float	Fixed::toFloat( void ) const {
+	return (static_cast<float>(rawBits) / (1 << Fixed::fractionBits));
+}
+
+int		Fixed::toInt( void ) const {
+	return (rawBits >> Fixed::fractionBits);
+}
+
 void	Fixed::operator=(Fixed const & arg) {
 	std::cout << "Assignation operator called" << std::endl;
-    this->rawBits = arg.rawBits;
+	this->rawBits = arg.getRawBits();
+}
+
+std::ostream &operator<<(std::ostream& flux, const Fixed& fix)  {
+	flux << fix.toFloat();
+	return (flux);
 }

@@ -7,8 +7,8 @@ class Fixed
 
 		Fixed( void );
 		Fixed( int const & value );
+		Fixed( float const & value );
 		Fixed( Fixed const & cpy );
-		Fixed( float const & cpy );
 		~Fixed();
 
 		void	operator=( const Fixed& cpy );
@@ -16,9 +16,6 @@ class Fixed
 		void	setRawBits( int const raw );
 		float	toFloat( void ) const;
 		int		toInt( void ) const;
-
-		void	print( std::ostream &flux ) const;
-		void	put_fixed( void );
 
 	private:
 
