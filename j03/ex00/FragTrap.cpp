@@ -5,10 +5,10 @@
 #define CHARACTER_SELECTION_QUOTES	{\
 										"Hey everybody ! Check out my package!",\
 										"Let's get this party started!",\
-										"Glitching weirdness is a term of endearment, right?",\
+										"Glitching weirdness is a term of endearment, right ?",\
 										"Recompiling my combat code!",\
-										"This time it'll be awesome, I promise!",\
-										"Look out everybody ! Things are about to get awesome!"\
+										"This time it'll be awesome, I promise !",\
+										"Look out everybody ! Things are about to get awesome !"\
 									}
 
 #define VAULTHUNTER_QUOTES	{\
@@ -44,7 +44,7 @@
 								"boiyoiyoiyoiyoing !",\
 								"for you...I commit...seppuku...",\
 								"some days, you just can't get rid of an obscure pop-culture reference.",\
-								"can I use my magic missile",\
+								"can I use my magic missile.",\
 								"do not look behind my curtain !",\
 								"i'm made of magic !",\
 								"you can call me Gundalf !",\
@@ -63,10 +63,10 @@
 							}
 
 #define MELEE_QUOTES	{\
-							"This is why you do your homework!",\
-							"Class is now in session",\
-							"Hee Yah!",\
-							"Take That"\
+							"This is why you do your homework !",\
+							"Class is now in session.",\
+							"Hee Yah !",\
+							"Take That."\
 						}
 
 #define RANGED_QUOTES	{\
@@ -74,16 +74,16 @@
 							/*			Pistols			*/\
 							/****************************/\
 							"Shaken, not stirred",\
-							"The moon is not enough!",\
+							"The moon is not enough !",\
 							"My name is Trap, Claptrap, 00...Trap.",\
-							"I expect you to die!",\
+							"I expect you to die !",\
 							"I'd do anything for a woman with a gun.",\
 							/****************************/\
 							/*		    Shotguns		*/\
 							/****************************/\
-							"In yo' FACE!",\
-							"Get ready for some Claptrap face time!",\
-							"Chk-chk, BOOM!",\
+							"In yo' FACE !",\
+							"Get ready for some Claptrap face time !",\
+							"Chk-chk, BOOM !",\
 							"You're listening to 'Short-Range Damage Radio.'",\
 							"Up-close and personal.",\
 							/****************************/\
@@ -92,21 +92,21 @@
 							"Get off my lawn.",\
 							"Back in my day...",\
 							"At least I still have my teeth.",\
-							"Coffee? Black... like my soul.",\
+							"Coffee ? Black... like my soul.",\
 							"Crazy young whippersnappers...",\
 							/****************************/\
 							/*		 Sniper Rifles		*/\
 							/****************************/\
-							"Now you're sorted!",\
-							"Snoiped!",\
-							"Crack shot!"\
+							"Now you're sorted !",\
+							"Snoiped !",\
+							"Crack shot !"\
 						}
 
 #define HEALING_QUOTES	{\
 							"Make my day.",\
 							"Gimme your best shot.",\
-							"Hit me, baby!",\
-							"Feeling lucky, punk?"\
+							"Hit me, baby !",\
+							"Feeling lucky, punk ?"\
 						}
 
 static std::string	random_string(const char **array, size_t size) {
@@ -136,7 +136,7 @@ FragTrap::FragTrap( FragTrap const & cpy ) {
 }
 
 FragTrap::~FragTrap(void) {
-	std::cout << 	"Are you god ? Am I dead ?"\
+	std::cout << 	"Am I dead ? Are you god ?"\
 					" I'M DEAD I'M DEAD OHMYGOD I'M DEAD !" << std::endl;
 }
 
@@ -163,14 +163,14 @@ std::ostream &operator<<(std::ostream& flux, const FragTrap& arg)  {
 
 void	FragTrap::rangedAttack(std::string const & target) {
 	const char	*quotes[] = RANGED_QUOTES;
-	std::cout << "FR4G-TP " << name << " attacks " << target << " at melee,"\
+	std::cout << "FR4G-TP " << name << " attacks " << target << " at range,"\
 				" causing " << rangedAttackDamage << " points of damage ! "
 				<< random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 }
 
 void	FragTrap::meleeAttack(std::string const & target) {
 	const char	*quotes[] = MELEE_QUOTES;
-	std::cout << "FR4G-TP " << name << " attacks " << target << " at range,"\
+	std::cout << "FR4G-TP " << name << " attacks " << target << " at melee,"\
 				" causing " << meleeAttackDamage << " points of damage ! "
 				<< random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 }
@@ -211,12 +211,13 @@ void	FragTrap::vaulthunter_dot_exe(std::string const & target) {
 
 	if (energyPoints < 25)
 		std::cout << name <<	": Like my old buddy used to say : \""\
-								"You must construct additional pylons\""
+								"You must construct additional pylons\"."
 					<< std::endl;
-	else
+	else {
 		std::cout << name << ": Hey " << target << ", "\
 				<< random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
-	(void)target;
+		energyPoints -= 25;
+	}
 }
 
 std::string		FragTrap::getName( void ) const{
