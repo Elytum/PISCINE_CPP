@@ -120,18 +120,16 @@ static std::string	random_string(const char **array, size_t size) {
 FragTrap::FragTrap( std::string	name ) :	name(name),
 											hitPoints (100),
 											maxHitPoints (100),
-											energyPoints (50),
-											maxEnergyPoints (50),
+											energyPoints (100),
+											maxEnergyPoints (100),
 											level (1),
-											meleeAttackDamage (20),
-											rangedAttackDamage (15),
+											meleeAttackDamage (30),
+											rangedAttackDamage (20),
 											armorDamageReduction (5) {
 	const char	*quotes[] = FRAGTRAP_CHARACTER_SELECTION_QUOTES;
 
 	std::cout << name << ": " << random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 	(void)level;
-	(void)energyPoints;
-	(void)maxEnergyPoints;
 }
 
 FragTrap::FragTrap( FragTrap const & cpy ) {

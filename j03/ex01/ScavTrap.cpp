@@ -39,11 +39,11 @@ static std::string	random_string(const char **array, size_t size) {
 ScavTrap::ScavTrap( std::string	name ) :	name(name),
 											hitPoints (100),
 											maxHitPoints (100),
-											energyPoints (100),
-											maxEnergyPoints (100),
+											energyPoints (50),
+											maxEnergyPoints (50),
 											level (1),
-											meleeAttackDamage (30),
-											rangedAttackDamage (20),
+											meleeAttackDamage (20),
+											rangedAttackDamage (15),
 											armorDamageReduction (3) {
 	const char	*quotes[] = SCAVTRAP_CHARACTER_SELECTION_QUOTES;
 
