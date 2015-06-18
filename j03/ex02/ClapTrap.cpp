@@ -20,22 +20,11 @@
 						}
 
 #define CLAPTRAP_DEATH_QUOTES {\
-						"What is dead may never die.",\
+						"What is dead may never die."\
 					}
 
-static size_t						array_size(const std::string array[]) {
-	size_t					size = 0;
-
-	std::cout << "Calculating array size" << std::endl;
-	while (!array[size].empty()) {
-		std::cout << "Array_size: " << array[size] << std::endl;
-		size++;
-	}
-	return (size);
-}
-
-static const std::string	random_string(const std::string array[]) {
-		return (array[rand() % (array_size(array))]);
+static std::string	random_string(const char *array[], size_t size) {
+		return (array[rand() & size]);
 }
 
 ClapTrap::ClapTrap( std::string	name ) :	name(name),
@@ -47,12 +36,30 @@ ClapTrap::ClapTrap( std::string	name ) :	name(name),
 											meleeAttackDamage (30),
 											rangedAttackDamage (20),
 											armorDamageReduction (3) {
-	const std::string	quotes[] = CLAPTRAP_CHARACTER_SELECTION_QUOTES;
 
-	std::cout << name << ": " << random_string(quotes) << std::endl;
+	std::cout << name << ": " << talk("creation") << std::endl;
 	(void)level;
-	(void)energyPoints;
-	(void)maxEnergyPoints;
+}
+
+
+const std::string			ClapTrap::talk ( std::string const & kind ) const{
+	static const char			*character_selection[] = CLAPTRAP_CHARACTER_SELECTION_QUOTES;
+	static const char			*melee[] = CLAPTRAP_MELEE_QUOTES;
+	static const char			*ranged[] = CLAPTRAP_RANGED_QUOTES;
+	static const char			*healing[] = CLAPTRAP_HEALING_QUOTES;
+	static const char			*death[] = CLAPTRAP_DEATH_QUOTES;
+
+	if (kind == "creation")
+		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
+	else if (kind == "melee")
+		return (random_string(melee, ARRAY_SIZE(melee)));
+	else if (kind == "ranged")
+		return (random_string(ranged, ARRAY_SIZE(ranged)));
+	else if (kind == "healing")
+		return (random_string(healing, ARRAY_SIZE(ranged)));
+	else if (kind == "death")
+		return (random_string(death, ARRAY_SIZE(death)));
+	return ("");
 }
 
 ClapTrap::ClapTrap( ClapTrap const & cpy ) {
@@ -62,7 +69,7 @@ ClapTrap::ClapTrap( ClapTrap const & cpy ) {
 
 ClapTrap::~ClapTrap(void) {
 
-	std::cout << random_string(deathQuotes) << std::endl;
+	std::cout << talk("death") << std::endl;
 }
 
 void	ClapTrap::operator=(ClapTrap const & arg) {
@@ -88,14 +95,14 @@ void	ClapTrap::rangedAttack(std::string const & target) {
 
 	std::cout << "FR4G-TP " << name << " attacks " << target << " at range,"\
 				" causing " << rangedAttackDamage << " points of damage ! "
-				<< random_string(rangedQuotes) << std::endl;
+				<< talk("ranged") << std::endl;
 }
 
 void	ClapTrap::meleeAttack(std::string const & target) {
 
 	std::cout << "FR4G-TP " << name << " attacks " << target << " at melee,"\
 				" causing " << meleeAttackDamage << " points of damage ! "
-				<< random_string(meleeQuotes) << std::endl;
+				<< talk("melee") << std::endl;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
@@ -118,22 +125,14 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 
 void	ClapTrap::beRepaired(unsigned int amount) {
 
-	std::cout << "\t\tBeginning repair" << std::endl;
 			//	Max repair
 	if (hitPoints + amount > maxHitPoints)
 		amount = maxHitPoints - hitPoints;
 
-	std::cout << "\t\tOutputting repair" << std::endl;
-	// std::cout << "Len: " << array_size(rangedQuotes) << std::endl;
-
-	std::cout << "FR4G-TP " << name << " is repairing " << amount << " points of damage ! "
+	std::cout << "FR4G-TP " << name << talk("healing") << amount << " points of damage ! "
 				<< "" << std::endl;
 
-	std::cout << "\t\tAdding repair" << std::endl;
-
 	hitPoints += amount;
-
-	std::cout << "\t\tEnding repair" << std::endl;
 }
 
 std::string		ClapTrap::getName( void ) const{

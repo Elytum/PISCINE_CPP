@@ -113,36 +113,13 @@
 						"Am I dead ? Are you god ? I'M DEAD I'M DEAD OHMYGOD I'M DEAD !", "SPAM"\
 					}
 
-static std::string	random_string(const std::string array[], size_t size) {
+static std::string	random_string(const char *array[], size_t size) {
 		return (array[rand() & size]);
 }
 
 FragTrap::FragTrap( std::string	name ) :	ClapTrap(name) {
 
-	static const std::string myCharacterSelectionQuotes[] = FRAGTRAP_CHARACTER_SELECTION_QUOTES;
-	static const std::string mySpecialQuotes[] = FRAGTRAP_VAULTHUNTER_QUOTES;
-	static const std::string myMeleeQuotes[] = FRAGTRAP_MELEE_QUOTES;
-	static const std::string myRangedQuotes[] = FRAGTRAP_RANGED_QUOTES;
-	static const std::string myHealingQuotes[] = FRAGTRAP_HEALING_QUOTES;
-	static const std::string myDeathQuotes[] = FRAGTRAP_DEATH_QUOTES;
-
-	characterSelectionQuotes = myCharacterSelectionQuotes;
-	specialQuotes = mySpecialQuotes;
-	meleeQuotes = myMeleeQuotes;
-	rangedQuotes = myRangedQuotes;
-	healingQuotes = myHealingQuotes;
-	deathQuotes = myDeathQuotes;
-
-	hitPoints = 100;
-	maxHitPoints = 100;
-	energyPoints = 100;
-	maxEnergyPoints = 100;
-	level = 1;
-	meleeAttackDamage = 30;
-	rangedAttackDamage = 20;
-	armorDamageReduction = 3;
-
-	std::cout << name << ": " << random_string(myCharacterSelectionQuotes, ARRAY_SIZE(myCharacterSelectionQuotes) - 1) << std::endl;
+	std::cout << name << ": " << "INIT" << std::endl;
 	(void)level;
 }
 
@@ -154,7 +131,28 @@ void	FragTrap::vaulthunter_dot_exe(std::string const & target) {
 					<< std::endl;
 	else {
 		std::cout << name << ": Hey " << target << ", "\
-				<< random_string(specialQuotes, ARRAY_SIZE(specialQuotes) - 1) << std::endl;
+				<< talk("special") << std::endl;
 		energyPoints -= 25;
 	}
+}
+
+const std::string		FragTrap::talk ( std::string const & kind ) const {
+	static const char		*character_selection[] = FRAGTRAP_CHARACTER_SELECTION_QUOTES;
+	static const char		*melee[] = FRAGTRAP_MELEE_QUOTES;
+	static const char		*ranged[] = FRAGTRAP_RANGED_QUOTES;
+	static const char		*healing[] = FRAGTRAP_HEALING_QUOTES;
+	static const char		*death[] = FRAGTRAP_DEATH_QUOTES;
+
+	if (kind == "creation")
+		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
+	else if (kind == "melee")
+		return (random_string(melee, ARRAY_SIZE(melee)));
+	else if (kind == "ranged")
+		return (random_string(ranged, ARRAY_SIZE(ranged)));
+	else if (kind == "healing")
+		return (random_string(healing, ARRAY_SIZE(healing)));
+	else if (kind == "death")
+		return (random_string(death, ARRAY_SIZE(death)));
+	return ("");
+	(void)kind;
 }

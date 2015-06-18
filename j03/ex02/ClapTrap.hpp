@@ -35,6 +35,8 @@ class ClapTrap
 
 	protected:
 
+		const std::string		talk ( std::string const & kind ) const;
+
 		std::string		name;
 		unsigned int	hitPoints;
 		unsigned int	maxHitPoints;
@@ -44,13 +46,6 @@ class ClapTrap
 		unsigned int	meleeAttackDamage;
 		unsigned int	rangedAttackDamage;
 		unsigned int	armorDamageReduction;
-
-		const std::string		&characterSelectionQuotes;
-		const std::string		&specialQuotes;
-		const std::string		&meleeQuotes;
-		const std::string		&rangedQuotes;
-		const std::string		&healingQuotes;
-		const std::string		&deathQuotes;
 };
 
 std::ostream &operator<<( std::ostream &flux, const ClapTrap &fixed );
