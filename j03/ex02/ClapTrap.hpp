@@ -4,8 +4,10 @@
 #include <iostream>
 #include <math.h>
 
+
 class ClapTrap
 {
+	typedef  std::string (talkAction) (std::string const & target);
 
 	public:
 
@@ -13,7 +15,7 @@ class ClapTrap
 		ClapTrap( ClapTrap const & cpy );
 		~ClapTrap();
 
-		void	operator=( const ClapTrap& cpy );
+		ClapTrap&	operator=( const ClapTrap& cpy );
 
 		void	rangedAttack(std::string const & target);
 		void	meleeAttack(std::string const & target);
@@ -35,7 +37,9 @@ class ClapTrap
 
 	protected:
 
-		const std::string		talk ( std::string const & kind ) const;
+		talkAction		*talk;
+
+		// const std::string		talk ( std::string const & kind ) const;
 
 		std::string		name;
 		unsigned int	hitPoints;
@@ -50,4 +54,7 @@ class ClapTrap
 
 std::ostream &operator<<( std::ostream &flux, const ClapTrap &fixed );
 
+
 #endif
+
+std::string	random_string(const char *array[], size_t size);

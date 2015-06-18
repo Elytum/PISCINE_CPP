@@ -2,9 +2,9 @@
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*a))
 
-#define SCAVTRAP_CHARACTER_SELECTION_QUOTES	{ "It's a VERY important duty, as I'm not to let ANYONE in through here ! Unless, of course, you're here as fresh meat for the recruitment grinder !", "Halt, moon citizen ! I've been chosen to stand out here -- far, far away from everyone else -- to guard the main gate to the old communications facility. It's a VERY important duty, as I'm not to let ANYONE in through here ! Unless, of course, you're here as fresh meat for the recruitment grinder !"}
+#define CHARACTER_SELECTION_QUOTES	{ "It's a VERY important duty, as I'm not to let ANYONE in through here ! Unless, of course, you're here as fresh meat for the recruitment grinder !", "Halt, moon citizen ! I've been chosen to stand out here -- far, far away from everyone else -- to guard the main gate to the old communications facility. It's a VERY important duty, as I'm not to let ANYONE in through here ! Unless, of course, you're here as fresh meat for the recruitment grinder !"}
 
-#define SCAVTRAP_CHALLENGING_QUOTES	{\
+#define CHALLENGING_QUOTES	{\
 							"You wan't a challenge ? Go attach zaz to a tree !",\
 							"Go feed the troll !",\
 							"Lick your elbow !",\
@@ -13,29 +13,59 @@
 							"Survive GladOs !"\
 						}
 
-#define SCAVTRAP_MELEE_QUOTES	{\
+#define MELEE_QUOTES	{\
 							"See ? I'm like Clank with his big... Wrench"\
 						}
 
-#define SCAVTRAP_RANGED_QUOTES	{\
+#define RANGED_QUOTES	{\
 							"And here comes a grenade for table four !"\
 						}
 
-#define SCAVTRAP_HEALING_QUOTES	{\
+#define HEALING_QUOTES	{\
 							"You're never gonna kill me !"\
 						}
 
-#define SCAVTRAP_DEATH_QUOTES {\
+#define DEATH_QUOTES {\
 						"Life... Don't talk to me about life...",\
 					}
 
-static std::string	random_string(const char *array[], size_t size) {
-		return (array[rand() & size]);
+std::string		talk_fn_scav ( std::string const & kind ) {
+	static const char		*character_selection[] = CHARACTER_SELECTION_QUOTES;
+	static const char		*melee[] = MELEE_QUOTES;
+	static const char		*ranged[] = RANGED_QUOTES;
+	static const char		*healing[] = HEALING_QUOTES;
+	static const char		*death[] = DEATH_QUOTES;
+	static const char		*special[] = CHALLENGING_QUOTES;
+
+	if (kind == "creation")
+		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
+	else if (kind == "melee")
+		return (random_string(melee, ARRAY_SIZE(melee)));
+	else if (kind == "ranged")
+		return (random_string(ranged, ARRAY_SIZE(ranged)));
+	else if (kind == "healing")
+		return (random_string(healing, ARRAY_SIZE(healing)));
+	else if (kind == "death")
+		return (random_string(death, ARRAY_SIZE(death)));
+	else if (kind == "special")
+		return (random_string(special, ARRAY_SIZE(special)));
+	return ("");
+	(void)kind;
 }
+
 
 ScavTrap::ScavTrap( std::string	name ) :	ClapTrap(name) {
 
 	std::cout << name << ": " << "INIT" << std::endl;
+	talk = talk_fn_scav;
+	hitPoints = 100;
+	maxHitPoints = 100;
+	energyPoints = 50;
+	maxEnergyPoints = 50;
+	level = 1;
+	meleeAttackDamage = 30;
+	rangedAttackDamage = 20;
+	armorDamageReduction = 3;
 	(void)level;
 }
 
@@ -50,25 +80,4 @@ void	ScavTrap::challengeNewcomer(std::string const & target) {
 				<< talk("special") << std::endl;
 		energyPoints -= 25;
 	}
-}
-
-const std::string		ScavTrap::talk ( std::string const & kind ) const {
-	static const char		*character_selection[] = SCAVTRAP_CHARACTER_SELECTION_QUOTES;
-	static const char		*melee[] = SCAVTRAP_MELEE_QUOTES;
-	static const char		*ranged[] = SCAVTRAP_RANGED_QUOTES;
-	static const char		*healing[] = SCAVTRAP_HEALING_QUOTES;
-	static const char		*death[] = SCAVTRAP_DEATH_QUOTES;
-
-	if (kind == "creation")
-		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
-	else if (kind == "melee")
-		return (random_string(melee, ARRAY_SIZE(melee)));
-	else if (kind == "ranged")
-		return (random_string(ranged, ARRAY_SIZE(ranged)));
-	else if (kind == "healing")
-		return (random_string(healing, ARRAY_SIZE(healing)));
-	else if (kind == "death")
-		return (random_string(death, ARRAY_SIZE(death)));
-	return ("");
-	(void)kind;
 }

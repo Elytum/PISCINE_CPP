@@ -15,8 +15,6 @@ class ScavTrap : public ClapTrap
 		void	challengeNewcomer(std::string const & target);
 
 	private:
-
-		const std::string		talk ( std::string const & kind ) const ;
 		
 };
 

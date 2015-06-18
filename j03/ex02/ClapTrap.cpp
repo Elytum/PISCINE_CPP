@@ -1,53 +1,39 @@
 #include "ClapTrap.hpp"
+#include <cstring>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*a))
 
-#define CLAPTRAP_CHARACTER_SELECTION_QUOTES	{\
+#define CHARACTER_SELECTION_QUOTES	{\
 										"Clap clap !",\
 										"Hello world !"\
 									}
 
-#define CLAPTRAP_MELEE_QUOTES	{\
+#define MELEE_QUOTES	{\
 							"And here comes my melee attack !"\
 						}
 
-#define CLAPTRAP_RANGED_QUOTES	{\
+#define RANGED_QUOTES	{\
 							"And here comes my ranged attack !"\
 						}
 
-#define CLAPTRAP_HEALING_QUOTES	{\
+#define HEALING_QUOTES	{\
 							"Melissandre, is that you ?"\
 						}
 
-#define CLAPTRAP_DEATH_QUOTES {\
+#define DEATH_QUOTES {\
 						"What is dead may never die."\
 					}
 
-static std::string	random_string(const char *array[], size_t size) {
-		return (array[rand() & size]);
+std::string	random_string(const char *array[], size_t size) {
+		return (array[rand() % size]);
 }
 
-ClapTrap::ClapTrap( std::string	name ) :	name(name),
-											hitPoints (100),
-											maxHitPoints (100),
-											energyPoints (100),
-											maxEnergyPoints (100),
-											level (1),
-											meleeAttackDamage (30),
-											rangedAttackDamage (20),
-											armorDamageReduction (3) {
-
-	std::cout << name << ": " << talk("creation") << std::endl;
-	(void)level;
-}
-
-
-const std::string			ClapTrap::talk ( std::string const & kind ) const{
-	static const char			*character_selection[] = CLAPTRAP_CHARACTER_SELECTION_QUOTES;
-	static const char			*melee[] = CLAPTRAP_MELEE_QUOTES;
-	static const char			*ranged[] = CLAPTRAP_RANGED_QUOTES;
-	static const char			*healing[] = CLAPTRAP_HEALING_QUOTES;
-	static const char			*death[] = CLAPTRAP_DEATH_QUOTES;
+std::string			talk_fn ( std::string const & kind ) {
+	static const char			*character_selection[] = CHARACTER_SELECTION_QUOTES;
+	static const char			*melee[] = MELEE_QUOTES;
+	static const char			*ranged[] = RANGED_QUOTES;
+	static const char			*healing[] = HEALING_QUOTES;
+	static const char			*death[] = DEATH_QUOTES;
 
 	if (kind == "creation")
 		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
@@ -62,7 +48,22 @@ const std::string			ClapTrap::talk ( std::string const & kind ) const{
 	return ("");
 }
 
-ClapTrap::ClapTrap( ClapTrap const & cpy ) {
+ClapTrap::ClapTrap( std::string	name ) :	talk(talk_fn),
+											name(name),
+											hitPoints (100),
+											maxHitPoints (100),
+											energyPoints (100),
+											maxEnergyPoints (100),
+											level (1),
+											meleeAttackDamage (30),
+											rangedAttackDamage (20),
+											armorDamageReduction (3) {
+
+	std::cout << name << ": " << talk("creation") << std::endl;
+	(void)level;
+}
+
+ClapTrap::ClapTrap( ClapTrap const & cpy ) : talk(talk_fn) {
 	std::cout << cpy.name << ": Duplication requested." << std::endl;
 	(*this) = cpy;
 }
@@ -72,8 +73,10 @@ ClapTrap::~ClapTrap(void) {
 	std::cout << talk("death") << std::endl;
 }
 
-void	ClapTrap::operator=(ClapTrap const & arg) {
+ClapTrap&	ClapTrap::operator=(ClapTrap const & arg) {
 	std::cout << "And here's my new assignement !" << std::endl;
+
+	talk = arg.talk;
 	name = arg.getName();
 	hitPoints = arg.getHitPoints();
 	maxHitPoints = arg.getMaxHitPoints();
@@ -83,6 +86,7 @@ void	ClapTrap::operator=(ClapTrap const & arg) {
 	meleeAttackDamage = arg.getMeleeAttackDamage();
 	rangedAttackDamage = arg.getRangedAttackDamage();
 	armorDamageReduction = arg.getArmorDamageReduction();
+	return (*this);
 }
 
 std::ostream &operator<<(std::ostream& flux, const ClapTrap& arg)  {
@@ -118,7 +122,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		amount = hitPoints;
 
 	std::cout << "FR4G-TP " << name << " is taking " << amount
-				<< " points of damage ! " << std::endl;
+				<< " points of damage !" << std::endl;
 
 	hitPoints -= amount;
 }
@@ -129,8 +133,8 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 	if (hitPoints + amount > maxHitPoints)
 		amount = maxHitPoints - hitPoints;
 
-	std::cout << "FR4G-TP " << name << talk("healing") << amount << " points of damage ! "
-				<< "" << std::endl;
+	std::cout << "FR4G-TP " << name << " repaired " << amount << " points of damage ! "
+				<< talk("healing") << std::endl;
 
 	hitPoints += amount;
 }

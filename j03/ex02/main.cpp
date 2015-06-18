@@ -72,7 +72,7 @@ void	FragTraptest ( void )
 
 void	ScavTraptest ( void )
 {
-	std::cout << "Testing ScavTrap: " << std::endl << std::endl;
+	std::cout << "Testing ScavTrap: " << std::endl;
 	ScavTrap				subject_one("Unknown");
 	ScavTrap				subject_two("GladOs");
 	ScavTrap				subject_three = subject_two;

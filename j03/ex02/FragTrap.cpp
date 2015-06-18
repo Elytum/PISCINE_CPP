@@ -2,7 +2,7 @@
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*a))
 
-#define FRAGTRAP_CHARACTER_SELECTION_QUOTES	{\
+#define CHARACTER_SELECTION_QUOTES	{\
 										"Hey everybody ! Check out my package!",\
 										"Let's get this party started!",\
 										"Glitching weirdness is a term of endearment, right ?",\
@@ -11,7 +11,7 @@
 										"Look out everybody ! Things are about to get awesome !"\
 									}
 
-#define FRAGTRAP_VAULTHUNTER_QUOTES	{\
+#define VAULTHUNTER_QUOTES	{\
 								"this time it'll be awesome, I promise !",\
 								"hey everybody, check out my package !",\
 								"defragmenting !",\
@@ -62,14 +62,14 @@
 								"i feel a joke about poop decks coming on !",\
 							}
 
-#define FRAGTRAP_MELEE_QUOTES	{\
+#define MELEE_QUOTES	{\
 							"This is why you do your homework !",\
 							"Class is now in session.",\
 							"Hee Yah !",\
 							"Take That."\
 						}
 
-#define FRAGTRAP_RANGED_QUOTES	{\
+#define RANGED_QUOTES	{\
 							/****************************/\
 							/*			Pistols			*/\
 							/****************************/\
@@ -102,24 +102,54 @@
 							"Crack shot !"\
 						}
 
-#define FRAGTRAP_HEALING_QUOTES	{\
+#define HEALING_QUOTES	{\
 							"Make my day.",\
 							"Gimme your best shot.",\
 							"Hit me, baby !",\
 							"Feeling lucky, punk ?"\
 						}
 
-#define FRAGTRAP_DEATH_QUOTES {\
-						"Am I dead ? Are you god ? I'M DEAD I'M DEAD OHMYGOD I'M DEAD !", "SPAM"\
+#define DEATH_QUOTES {\
+						"Am I dead ? Are you god ? I'M DEAD I'M DEAD OHMYGOD I'M DEAD !"\
 					}
 
-static std::string	random_string(const char *array[], size_t size) {
-		return (array[rand() & size]);
+std::string		talk_fn_frag ( std::string const & kind ) {
+	static const char		*character_selection[] = CHARACTER_SELECTION_QUOTES;
+	static const char		*melee[] = MELEE_QUOTES;
+	static const char		*ranged[] = RANGED_QUOTES;
+	static const char		*healing[] = HEALING_QUOTES;
+	static const char		*death[] = DEATH_QUOTES;
+	static const char		*special[] = VAULTHUNTER_QUOTES;
+
+	if (kind == "creation")
+		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
+	else if (kind == "melee")
+		return (random_string(melee, ARRAY_SIZE(melee)));
+	else if (kind == "ranged")
+		return (random_string(ranged, ARRAY_SIZE(ranged)));
+	else if (kind == "healing")
+		return (random_string(healing, ARRAY_SIZE(healing)));
+	else if (kind == "death")
+		return (random_string(death, ARRAY_SIZE(death)));
+	else if (kind == "special")
+		return (random_string(special, ARRAY_SIZE(special)));
+	return ("");
+	(void)kind;
 }
+
 
 FragTrap::FragTrap( std::string	name ) :	ClapTrap(name) {
 
 	std::cout << name << ": " << "INIT" << std::endl;
+	talk = talk_fn_frag;
+	hitPoints = 100;
+	maxHitPoints = 100;
+	energyPoints = 50;
+	maxEnergyPoints = 50;
+	level = 1;
+	meleeAttackDamage = 20;
+	rangedAttackDamage = 15;
+	armorDamageReduction = 5;
 	(void)level;
 }
 
@@ -134,25 +164,4 @@ void	FragTrap::vaulthunter_dot_exe(std::string const & target) {
 				<< talk("special") << std::endl;
 		energyPoints -= 25;
 	}
-}
-
-const std::string		FragTrap::talk ( std::string const & kind ) const {
-	static const char		*character_selection[] = FRAGTRAP_CHARACTER_SELECTION_QUOTES;
-	static const char		*melee[] = FRAGTRAP_MELEE_QUOTES;
-	static const char		*ranged[] = FRAGTRAP_RANGED_QUOTES;
-	static const char		*healing[] = FRAGTRAP_HEALING_QUOTES;
-	static const char		*death[] = FRAGTRAP_DEATH_QUOTES;
-
-	if (kind == "creation")
-		return (random_string(character_selection, ARRAY_SIZE(character_selection)));
-	else if (kind == "melee")
-		return (random_string(melee, ARRAY_SIZE(melee)));
-	else if (kind == "ranged")
-		return (random_string(ranged, ARRAY_SIZE(ranged)));
-	else if (kind == "healing")
-		return (random_string(healing, ARRAY_SIZE(healing)));
-	else if (kind == "death")
-		return (random_string(death, ARRAY_SIZE(death)));
-	return ("");
-	(void)kind;
 }
