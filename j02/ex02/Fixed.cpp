@@ -8,7 +8,7 @@ Fixed::Fixed( int const & value ) {
 }
 
 Fixed::Fixed( float const & value ) {
-	rawBits = roundf(value * (Fixed::fractionBits * 32));
+	rawBits = roundf(value * (Fixed::fractionBits * (1 << (1 + sizeof(int)))));
 }
 
 Fixed::Fixed( Fixed const & cpy ) {
@@ -27,7 +27,7 @@ void	Fixed::setRawBits( int const raw ) {
 }
 
 float	Fixed::toFloat( void ) const {
-	return (float)rawBits / (Fixed::fractionBits * 32);
+	return (float)rawBits / (Fixed::fractionBits * (1 << (1 + sizeof(int))));
 }
 
 int		Fixed::toInt( void ) const {
@@ -48,31 +48,31 @@ Fixed&	Fixed::max( Fixed const & a, Fixed const & b ) {
 		return ((Fixed &)b);
 }
 
-void	Fixed::operator=(Fixed const & arg) {
+void	Fixed::operator=( Fixed const & arg ) {
 	rawBits = arg.rawBits;
 }
 
-bool	Fixed::operator>(Fixed const & cmp) const {
+bool	Fixed::operator>( Fixed const & cmp ) const {
 	return (rawBits > cmp.getRawBits());
 }
 
-bool	Fixed::operator<(Fixed const & cmp) const {
+bool	Fixed::operator<( Fixed const & cmp ) const {
 	return (rawBits < cmp.getRawBits());
 }
 
-bool	Fixed::operator>=(Fixed const & cmp) const {
+bool	Fixed::operator>=( Fixed const & cmp ) const {
 	return (rawBits >= cmp.getRawBits());
 }
 
-bool	Fixed::operator<=(Fixed const & cmp) const {
+bool	Fixed::operator<=( Fixed const & cmp ) const {
 	return (rawBits <= cmp.getRawBits());
 }
 
-bool	Fixed::operator==(Fixed const & cmp) const {
+bool	Fixed::operator==( Fixed const & cmp ) const {
 	return (rawBits == cmp.getRawBits());
 }
 
-bool	Fixed::operator!=(Fixed const & cmp) const {
+bool	Fixed::operator!=( Fixed const & cmp ) const {
 	return (rawBits != cmp.getRawBits());
 }
 

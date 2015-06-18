@@ -22,20 +22,12 @@ void	Fixed::setRawBits( int const raw ) {
 	rawBits = raw;
 }
 
-float	Fixed::toFloat( void ) const {
-	return (float)rawBits / (Fixed::fractionBits * 32);
-}
-
-int		Fixed::toInt( void ) const {
-	return (rawBits >> Fixed::fractionBits);
-}
-
 void	Fixed::operator=(Fixed const & arg) {
 	std::cout << "Assignation operator called" << std::endl;
-	this->rawBits = arg.getRawBits();
+	rawBits = arg.getRawBits();
 }
 
 std::ostream &operator<<(std::ostream& flux, const Fixed& fix)  {
-	flux << fix.toFloat();
+	flux << "Operator << called";
 	return (flux);
 }
