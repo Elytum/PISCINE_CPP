@@ -1,6 +1,4 @@
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 Fixed::Fixed( void ) : rawBits(0) {
 }
@@ -55,46 +53,46 @@ void	Fixed::operator=(Fixed const & arg) {
 }
 
 bool	Fixed::operator>(Fixed const & cmp) const {
-	return (getRawBits() > cmp.getRawBits());
+	return (rawBits > cmp.getRawBits());
 }
 
 bool	Fixed::operator<(Fixed const & cmp) const {
-	return (getRawBits() < cmp.getRawBits());
+	return (rawBits < cmp.getRawBits());
 }
 
 bool	Fixed::operator>=(Fixed const & cmp) const {
-	return (getRawBits() >= cmp.getRawBits());
+	return (rawBits >= cmp.getRawBits());
 }
 
 bool	Fixed::operator<=(Fixed const & cmp) const {
-	return (getRawBits() <= cmp.getRawBits());
+	return (rawBits <= cmp.getRawBits());
 }
 
 bool	Fixed::operator==(Fixed const & cmp) const {
-	return (getRawBits() == cmp.getRawBits());
+	return (rawBits == cmp.getRawBits());
 }
 
 bool	Fixed::operator!=(Fixed const & cmp) const {
-	return (getRawBits() != cmp.getRawBits());
+	return (rawBits != cmp.getRawBits());
 }
 
 Fixed	Fixed::operator+( const Fixed& cmp ) const {
-	return (Fixed (getRawBits() + cmp.getRawBits()));
+	return (Fixed (toFloat() + cmp.toFloat()));
 }
 
 Fixed&	Fixed::operator++( void ) {
-	setRawBits(getRawBits() + 1);
+	setRawBits(rawBits + 1);
 	return (*this);
 }
 
 Fixed	Fixed::operator++( int ) {
 	Fixed	tmp = *this;
-	setRawBits(getRawBits() + 1);
+	setRawBits(rawBits + 1);
 	return (tmp);
 }
 
 Fixed	Fixed::operator-( const Fixed& cmp ) const{
-	return (Fixed (getRawBits() - cmp.getRawBits()));
+	return (Fixed (toFloat() - cmp.toFloat()));
 }
 
 Fixed&	Fixed::operator--( void ) {
@@ -104,7 +102,7 @@ Fixed&	Fixed::operator--( void ) {
 
 Fixed	Fixed::operator--( int ) {
 	Fixed	tmp = *this;
-	setRawBits(getRawBits() - 1);
+	setRawBits(rawBits - 1);
 	return (tmp);
 }
 

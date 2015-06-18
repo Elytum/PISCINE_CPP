@@ -9,8 +9,6 @@ class Fixed
 	public:
 
 		Fixed( void );
-		Fixed( int const & value );
-		Fixed( float const & value );
 		Fixed( Fixed const & cpy );
 		~Fixed();
 
