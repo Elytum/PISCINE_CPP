@@ -2,7 +2,7 @@
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof(*a))
 
-#define CHARACTER_SELECTION_QUOTES	{\
+#define FRAGTRAP_CHARACTER_SELECTION_QUOTES	{\
 										"Hey everybody ! Check out my package!",\
 										"Let's get this party started!",\
 										"Glitching weirdness is a term of endearment, right ?",\
@@ -62,14 +62,14 @@
 								"i feel a joke about poop decks coming on !",\
 							}
 
-#define MELEE_QUOTES	{\
+#define FRAGTRAP_MELEE_QUOTES	{\
 							"This is why you do your homework !",\
 							"Class is now in session.",\
 							"Hee Yah !",\
 							"Take That."\
 						}
 
-#define RANGED_QUOTES	{\
+#define FRAGTRAP_RANGED_QUOTES	{\
 							/****************************/\
 							/*			Pistols			*/\
 							/****************************/\
@@ -102,12 +102,16 @@
 							"Crack shot !"\
 						}
 
-#define HEALING_QUOTES	{\
+#define FRAGTRAP_HEALING_QUOTES	{\
 							"Make my day.",\
 							"Gimme your best shot.",\
 							"Hit me, baby !",\
 							"Feeling lucky, punk ?"\
 						}
+
+#define FRAGTRAP_DEATH_QUOTES {\
+						"Am I dead ? Are you god ? I'M DEAD I'M DEAD OHMYGOD I'M DEAD !"\
+					}
 
 static std::string	random_string(const char **array, size_t size) {
 	return (array[rand() & size]);
@@ -116,13 +120,13 @@ static std::string	random_string(const char **array, size_t size) {
 FragTrap::FragTrap( std::string	name ) :	name(name),
 											hitPoints (100),
 											maxHitPoints (100),
-											energyPoints (100),
-											maxEnergyPoints (100),
+											energyPoints (50),
+											maxEnergyPoints (50),
 											level (1),
-											meleeAttackDamage (30),
-											rangedAttackDamage (20),
+											meleeAttackDamage (20),
+											rangedAttackDamage (15),
 											armorDamageReduction (5) {
-	const char	*quotes[] = CHARACTER_SELECTION_QUOTES;
+	const char	*quotes[] = FRAGTRAP_CHARACTER_SELECTION_QUOTES;
 
 	std::cout << name << ": " << random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 	(void)level;
@@ -136,8 +140,9 @@ FragTrap::FragTrap( FragTrap const & cpy ) {
 }
 
 FragTrap::~FragTrap(void) {
-	std::cout << 	"Am I dead ? Are you god ?"\
-					" I'M DEAD I'M DEAD OHMYGOD I'M DEAD !" << std::endl;
+	const char	*quotes[] = FRAGTRAP_DEATH_QUOTES;
+
+	std::cout << random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 }
 
 void	FragTrap::operator=(FragTrap const & arg) {
@@ -160,14 +165,14 @@ std::ostream &operator<<(std::ostream& flux, const FragTrap& arg)  {
 
 
 void	FragTrap::rangedAttack(std::string const & target) {
-	const char	*quotes[] = RANGED_QUOTES;
+	const char	*quotes[] = FRAGTRAP_RANGED_QUOTES;
 	std::cout << "FR4G-TP " << name << " attacks " << target << " at range,"\
 				" causing " << rangedAttackDamage << " points of damage ! "
 				<< random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
 }
 
 void	FragTrap::meleeAttack(std::string const & target) {
-	const char	*quotes[] = MELEE_QUOTES;
+	const char	*quotes[] = FRAGTRAP_MELEE_QUOTES;
 	std::cout << "FR4G-TP " << name << " attacks " << target << " at melee,"\
 				" causing " << meleeAttackDamage << " points of damage ! "
 				<< random_string(quotes, ARRAY_SIZE(quotes) - 1) << std::endl;
@@ -192,7 +197,7 @@ void	FragTrap::takeDamage(unsigned int amount) {
 }
 
 void	FragTrap::beRepaired(unsigned int amount) {
-	const char	*quotes[] = HEALING_QUOTES;
+	const char	*quotes[] = FRAGTRAP_HEALING_QUOTES;
 
 			//	Max repair
 	if (hitPoints + amount > maxHitPoints)
