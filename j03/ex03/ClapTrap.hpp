@@ -39,8 +39,6 @@ class ClapTrap
 
 		talkAction		*talk;
 
-		// const std::string		talk ( std::string const & kind ) const;
-
 		std::string		name;
 		unsigned int	hitPoints;
 		unsigned int	maxHitPoints;
