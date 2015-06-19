@@ -25,10 +25,7 @@ int				Enemy::getHP() const{
 void			Enemy::takeDamage( int arg ) {
 	if (arg < 0)
 		return ;
-	if (arg > hp)
-		hp = 0;
-	else
-		hp -= arg;
+	hp -= arg;
 }
 
 Enemy&			Enemy::operator=(Enemy const & arg) {

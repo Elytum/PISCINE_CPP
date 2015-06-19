@@ -11,16 +11,30 @@ Character::~Character() {
 }
 
 void		Character::recoverAP( void ) {
-
+	APPoints += + 10;
+	if (APPoints > 40)
+		APPoints = 40;
 }
 
 void		Character::equip(AWeapon* arg) {
-	(void)arg;
+	weapon = arg;
 }
 
 void		Character::attack(Enemy* arg) {
-	weapon.attach();
-	arg.attack(weapon.getDamage());
+	if (weapon) {
+		int		cost = weapon->getAPCost();
+
+		if (APPoints > cost) {
+			APPoints -= cost;
+
+			std::cout << name << " attacks " << arg->getType() << " with a " << weapon->getName() << std::endl;
+
+			weapon->attack();
+			arg->takeDamage(weapon->getDamage());
+			// if (arg->getHP() <= 0)
+			// 	delete arg;
+		}
+	}
 }
 
 std::string		Character::getName( void ) const {
@@ -41,7 +55,7 @@ std::ostream	&operator<<(std::ostream& flux, const Character& arg) {
 	if ((weapon = arg.getWeapon()))
 	{
 		flux	<< arg.getName() << " has "
-				<< arg.getAPPoints() << " and a "
+				<< arg.getAPPoints() << " AP and wields a "
 				<< weapon->getName()
 			<<  std::endl;	
 	} else {
