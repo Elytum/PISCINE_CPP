@@ -11,5 +11,5 @@ int main()
 	std::cout << robert << jim << joe;
 	robert.polymorph(jim);
 	robert.polymorph(joe);
-return 0;
+	return 0;
 }
