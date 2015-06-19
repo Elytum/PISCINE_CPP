@@ -13,17 +13,11 @@ class Peon : public Victim
 		Peon( Peon const & cpy );
 		~Peon();
 
-		// std::string		getName( void ) const;
-		// void			setName( std::string const arg );
-		
-		// Peon&			operator=(Peon const & arg);
 		virtual void	getPolymorphed() const;
 
 	private:
 
-		// std::string				name;
+		Peon ( void );
 };
-
-// std::ostream &operator<<( std::ostream &flux, const Peon &arg );
 
 #endif

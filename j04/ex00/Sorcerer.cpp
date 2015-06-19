@@ -1,6 +1,10 @@
 #include "Sorcerer.hpp"
 #include "Victim.hpp"
 
+Sorcerer::Sorcerer( void ) : name("Unknown"), title("Title") {
+	std::cout << name << ", " << title << ", is not born, what did you expect ?" << std::endl;
+}
+
 Sorcerer::Sorcerer( std::string name, std::string title ) : name(name), title(title) {
 	std::cout << name << ", " << title << ", is born !" << std::endl;
 }
@@ -30,7 +34,7 @@ void			Sorcerer::setTitle( std::string const arg ) {
 	title = arg;
 }
 
-void			Sorcerer::polymorph(Victim const & arg) const {
+void			Sorcerer::polymorph( Victim const & arg ) const {
 	arg.getPolymorphed();
 }
 

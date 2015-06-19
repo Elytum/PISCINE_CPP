@@ -14,16 +14,15 @@ class Sorcerer
 		~Sorcerer();
 
 		std::string		getName( void ) const;
-		void			setName( std::string const arg );
 		std::string		getTitle( void ) const;
-		void			setTitle( std::string const arg );
 
-		void			polymorph(Victim const & arg) const;
+		void			polymorph( Victim const & ) const;
 		
 		Sorcerer&		operator=( Sorcerer const & arg );
 
 	private:
 
+		Sorcerer ( void );
 		std::string				name;
 		std::string				title;
 };

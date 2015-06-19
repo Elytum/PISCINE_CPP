@@ -20,6 +20,7 @@ class Victim
 
 	protected:
 
+		Sorcerer ( void );
 		std::string				name;
 };
 
