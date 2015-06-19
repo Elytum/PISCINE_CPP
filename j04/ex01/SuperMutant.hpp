@@ -9,7 +9,7 @@ class SuperMutant : public Enemy
 
 	public:
 		SuperMutant( void );
-		~SuperMutant( void );
+		virtual ~SuperMutant( void );
 		virtual void	takeDamage( int );
 };
 

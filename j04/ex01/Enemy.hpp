@@ -14,7 +14,7 @@ class Enemy
 	public:
 		Enemy( int hp, std::string const & type );
 		Enemy	( Enemy const & cpy );
-		~Enemy( void );
+		virtual ~Enemy( void );
 
 		std::string		getType() const;
 		int				getHP() const;

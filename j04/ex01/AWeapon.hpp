@@ -16,7 +16,7 @@ class AWeapon
 	public:
 		AWeapon	( std::string const & name, int apcost, int damage );
 		AWeapon	( AWeapon const & cpy );
-		~AWeapon( void );
+		virtual ~AWeapon( void );
 
 		std::string		getName() const;
 		int				getAPCost() const;

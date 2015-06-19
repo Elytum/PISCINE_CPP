@@ -70,7 +70,7 @@ std::cout << "\tShould display : \"* click click click *\"" << std::endl;
 	AWeapon* pf = new PowerFist();				//												Create Fist
 
 	zaz->equip(pr);								//												Equip Plasma
-std::cout << "\tShould display : \"* click click click *\"" << std::endl;
+std::cout << "\tShould display : \"zaz has 40 AP and wields a Plasma Rifle\"" << std::endl;
 	std::cout << *zaz;							// zaz has 40 AP and wields a Plasma Rifle
 	zaz->equip(pf);								//												Equip Fist
 std::cout	<< "\tzaz attacks RadScorpion with a Power Fist\"" << std::endl

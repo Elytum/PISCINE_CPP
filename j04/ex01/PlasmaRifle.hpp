@@ -9,7 +9,7 @@ class PlasmaRifle : public AWeapon
 
 	public:
 		PlasmaRifle( void );
-		~PlasmaRifle( void );
+		virtual ~PlasmaRifle( void );
 		virtual void attack( void ) const;
 };
 

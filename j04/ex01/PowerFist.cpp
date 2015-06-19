@@ -1,6 +1,6 @@
 #include "PowerFist.hpp"
 
-PowerFist::PowerFist( void ) : AWeapon("Power Fist", 50, 8) {
+PowerFist::PowerFist( void ) : AWeapon("Power Fist", 8, 50) {
 }
 
 PowerFist::~PowerFist( void ) {

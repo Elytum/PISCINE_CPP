@@ -9,7 +9,7 @@ class RadScorpion : public Enemy
 
 	public:
 		RadScorpion( void );
-		~RadScorpion( void );
+		virtual ~RadScorpion( void );
 };
 
 #endif
