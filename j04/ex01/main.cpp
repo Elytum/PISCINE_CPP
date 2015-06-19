@@ -61,38 +61,38 @@
 
 int main()
 {
-	Character* zaz = new Character("zaz");		//												Create zaz
+	Character* zaz = new Character("zaz");
 std::cout << "\tShould display : \"zaz has 40 AP and is unarmed\"" << std::endl;
-	std::cout << *zaz;							// zaz has 40 AP and is unarmed
+	std::cout << *zaz;
 std::cout << "\tShould display : \"* click click click *\"" << std::endl;
-	Enemy* b = new RadScorpion();				// * click click click *
-	AWeapon* pr = new PlasmaRifle();			//												Create Plasma
-	AWeapon* pf = new PowerFist();				//												Create Fist
+	Enemy* b = new RadScorpion();
+	AWeapon* pr = new PlasmaRifle();
+	AWeapon* pf = new PowerFist();
 
-	zaz->equip(pr);								//												Equip Plasma
+	zaz->equip(pr);
 std::cout << "\tShould display : \"zaz has 40 AP and wields a Plasma Rifle\"" << std::endl;
-	std::cout << *zaz;							// zaz has 40 AP and wields a Plasma Rifle
-	zaz->equip(pf);								//												Equip Fist
+	std::cout << *zaz;
+	zaz->equip(pf);
 std::cout	<< "\tzaz attacks RadScorpion with a Power Fist\"" << std::endl
 			<< "\t\"* pschhh... SBAM! *\"" << std::endl;
-	zaz->attack(b);								// zaz attacks RadScorpion with a Power Fist
-												// * pschhh... SBAM! *
+	zaz->attack(b);
+
 std::cout << "\tShould display : \"zaz has 32 AP and wields a Power Fist\"" << std::endl;
-	std::cout << *zaz;							// zaz has 32 AP and wields a Power Fist
-	zaz->equip(pr);								//
+	std::cout << *zaz;
+	zaz->equip(pr);
 std::cout << "\tShould display : \"zaz has 32 AP and wields a Plasma Rifle\"" << std::endl;
-	std::cout << *zaz;							// zaz has 32 AP and wields a Plasma Rifle
+	std::cout << *zaz;
 std::cout	<< "\tzaz attacks RadScorpion with a Plasma Rifle\"" << std::endl
 			<< "\t\"* piouuu piouuu piouuu *\"" << std::endl;
-	zaz->attack(b);								// zaz attacks RadScorpion with a Plasma Rifle
-												// * piouuu piouuu piouuu *
+	zaz->attack(b);
+
 std::cout << "\tShould display : \"zaz has 27 AP and wields a Plasma Rifle\"" << std::endl;
-	std::cout << *zaz;							// zaz has 27 AP and wields a Plasma Rifle
-std::cout << "\tShould display : \"zaz attacks RadScorpion with a Plasma Rifle\"" << std::endl;
-	zaz->attack(b);								// zaz attacks RadScorpion with a Plasma Rifle
-std::cout << "\tShould display : \"* piouuu piouuu piouuu *\"" << std::endl;
-												// * piouuu piouuu piouuu *
-std::cout << "\tShould display : \"* SPROTCH *\"" << std::endl;
-	std::cout << *zaz;							// * SPROTCH *
+	std::cout << *zaz;
+std::cout	<< "\tShould display : \"zaz attacks RadScorpion with a Plasma Rifle\"" << std::endl
+			<< "\t\"* piouuu piouuu piouuu *\"" << std::endl
+			<< "\t\"* SPROTCH *\"" << std::endl;
+	zaz->attack(b);
+	std::cout << "\tzaz has 22 AP and wields a Plasma Rifle\"" << std::endl;
+	std::cout << *zaz;
 	return 0;
 }
