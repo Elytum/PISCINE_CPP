@@ -40,7 +40,7 @@ void			Sorcerer::polymorph( Victim const & arg ) const {
 
 Sorcerer&	Sorcerer::operator=(Sorcerer const & arg) {
 	name = arg.getName();
-	name = arg.getTitle();
+	title = arg.getTitle();
 	return (*this);
 }
 
