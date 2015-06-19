@@ -1,11 +1,11 @@
 #include "Squad.hpp"
 
-Squad::Squad( void ) {
-	// std::cout << "Tactical Marine ready for battle" << std::endl;
+Squad::Squad( void ) : count(0), container(0) {
 }
 
 Squad::~Squad( void ) {
-	// std::cout << "Tactical Marine ready for battle" << std::endl;
+	while (count > 0)
+		delete container[--count];
 }
 
 int				Squad::getCount( void ) const {
@@ -13,11 +13,22 @@ int				Squad::getCount( void ) const {
 }
 
 int				Squad::push( ISpaceMarine* marine ) {
+	ISpaceMarine**		containing = new ISpaceMarine*[count + 1];
+	int					len = 0;
+
+	while (len < count) {
+		containing[len] = container[len];
+		++len;
+	}
+	if (container)
+		delete [] container;
+	containing[len] = marine->clone();
+	container = containing;
 	return (count++);
-	(void)marine;
 }
 
 ISpaceMarine*	Squad::getUnit( int arg ) const {
-	return (0);
-	(void)arg;
+	if (arg < 0 || arg >= count)
+		return (0);
+	return (container[arg]);
 }

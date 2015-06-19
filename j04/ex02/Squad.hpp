@@ -9,6 +9,7 @@ class Squad : public ISquad
 {
 	private:
 		int						count;
+		ISpaceMarine**			container;
 
 	public:
 		Squad( void );
