@@ -23,7 +23,6 @@ void		Character::equip(AWeapon* arg) {
 void		Character::attack(Enemy* arg) {
 	if (weapon) {
 		int		cost = weapon->getAPCost();
-// std::cout << "\t\t\t\tDebug : " << APPoints << ", " << cost << std::endl;
 		if (APPoints > cost) {
 			APPoints -= cost;
 

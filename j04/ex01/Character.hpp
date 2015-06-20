@@ -15,12 +15,11 @@ class Character
 
 	public:
 		Character(std::string const & name);
-		/*[...]*/
 		~Character( void );
 		void			recoverAP( void );
 		void			equip( AWeapon* );
 		void			attack( Enemy* );
-		std::string /*[...]*/ getName( void ) const;
+		std::string 	getName( void ) const;
 		int				getAPPoints( void ) const;
 		AWeapon*		getWeapon( void ) const;
 };

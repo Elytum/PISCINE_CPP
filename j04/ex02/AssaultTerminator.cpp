@@ -5,7 +5,7 @@ AssaultTerminator::AssaultTerminator( void ) {
 }
 
 AssaultTerminator::~AssaultTerminator( void ) {
-	std::cout << "I’ll be back ..." << std::endl;
+	std::cout << "I'll be back ..." << std::endl;
 }
 
 void					AssaultTerminator::battleCry( void ) const {

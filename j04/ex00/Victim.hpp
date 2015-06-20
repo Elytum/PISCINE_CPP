@@ -19,8 +19,7 @@ class Victim
 		virtual void	getPolymorphed() const;
 
 	protected:
-
-		Sorcerer ( void );
+		
 		std::string				name;
 };
 

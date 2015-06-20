@@ -5,11 +5,11 @@ TacticalMarine::TacticalMarine( void ) {
 }
 
 TacticalMarine::~TacticalMarine( void ) {
-	std::cout << "For the holy PLOT !" << std::endl;
+	std::cout << "Aaargh ..." << std::endl;
 }
 
 void				TacticalMarine::TacticalMarine::battleCry( void ) const {
-	std::cout << "This code is unclean. PURIFY IT !" << std::endl;
+	std::cout << "For the holy PLOT !" << std::endl;
 }
 
 void				TacticalMarine::TacticalMarine::rangedAttack( void ) const {

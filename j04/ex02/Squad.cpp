@@ -4,8 +4,11 @@ Squad::Squad( void ) : count(0), container(0) {
 }
 
 Squad::~Squad( void ) {
-	while (count > 0)
-		delete container[--count];
+	int			i = 0;
+
+	while (i < count)
+		delete container[i++];
+	count = 0;
 }
 
 int				Squad::getCount( void ) const {
@@ -22,7 +25,7 @@ int				Squad::push( ISpaceMarine* marine ) {
 	}
 	if (container)
 		delete [] container;
-	containing[len] = marine->clone();
+	containing[len] = marine;
 	container = containing;
 	return (count++);
 }
