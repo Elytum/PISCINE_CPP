@@ -48,15 +48,24 @@ std::ostream&		operator<<(std::ostream& flux, Bureaucrat const & talking)	{
 	return (flux);
 }
 
-void				Bureaucrat::signForm( Form & formular ) const {
+void				Bureaucrat::signForm( Form & form ) const {
 	try {
-		formular.beSigned(*this);
-		std::cout << name << " signs " << formular.getName() << "." << std::endl;
+		bool	wasSigned = form.getWasSigned();
+
+		form.beSigned(*this);
+		std::cout << "Bureaucrat " << name << " (Grade " << grade << ") signs a " << form.getName()
+		<< " (s.grade " << form.getRequirementSign() << ", ex.grade " << form.getRequirementExec()
+		<< ")";
+		if (wasSigned)
+			std::cout << " (Signed)." << std::endl;
+		else
+			std::cout << " (Unsigned)." << std::endl;
+		
 	} catch (Form::GradeTooLowException) {
-		std::cout << name << " cannot sign " << formular.getName() << " because his grade is too low (His grade is "
-			<< grade << " but should be at least " << formular.getRequirementSign() << ")." << std::endl;
+		std::cout << "Bureaucrat " << name << " cannot sign " << form.getName() << " because his grade is too low (His grade is "
+			<< grade << " but should be at least " << form.getRequirementSign() << ")." << std::endl;
 	} catch (std::exception) {
-		std::cout << name << " cannot sign " << formular.getName() << " because of an unknown reason." << std::endl;
+		std::cout << "Bureaucrat " << name << " cannot sign " << form.getName() << " because of an unknown reason." << std::endl;
 	}
 }
 

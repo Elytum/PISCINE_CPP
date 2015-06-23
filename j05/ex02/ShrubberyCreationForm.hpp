@@ -10,12 +10,12 @@ class ShrubberyCreationForm : public Form
 		ShrubberyCreationForm( const std::string target );
 		ShrubberyCreationForm( ShrubberyCreationForm const & cpy);
 		virtual ~ShrubberyCreationForm( void );
+		virtual void		launch( void ) const;
 
 	private:
 
 		ShrubberyCreationForm( void );
 		const std::string	target;
-		virtual void		launch( void ) const;
 		const std::string	getTarget( void ) const;
 	
 };

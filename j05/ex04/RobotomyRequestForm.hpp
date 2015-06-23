@@ -10,13 +10,13 @@ class RobotomyRequestForm : public Form
 		RobotomyRequestForm( const std::string target );
 		RobotomyRequestForm( RobotomyRequestForm const & cpy);
 		virtual ~RobotomyRequestForm( void );
-		virtual const std::string	getTarget( void ) const;
-		virtual void		launch( void ) const;
 
 	private:
 
 		RobotomyRequestForm( void );
 		const std::string	target;
+		virtual void		launch( void ) const;
+		const std::string	getTarget( void ) const;
 	
 };
 

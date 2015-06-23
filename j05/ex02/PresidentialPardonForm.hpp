@@ -10,12 +10,12 @@ class PresidentialPardonForm : public Form
 		PresidentialPardonForm( const std::string target );
 		PresidentialPardonForm( PresidentialPardonForm const & cpy);
 		virtual ~PresidentialPardonForm( void );
+		virtual void		launch( void ) const;
 
 	private:
 
 		PresidentialPardonForm( void );
 		const std::string	target;
-		virtual void		launch( void ) const;
 		const std::string	getTarget( void ) const;
 	
 };

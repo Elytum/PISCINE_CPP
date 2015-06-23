@@ -4,7 +4,7 @@
 
 int			main(void)
 {
-	Bureaucrat		ArthurDent("Arthur Dent", 50);
+	Bureaucrat		ArthurDent("Arthur Dent", 20);
 	Bureaucrat		HummaKavula("Humma Kavula", 5);
 	Bureaucrat		FordPrefect("Ford Prefect", 12);
 	Bureaucrat		ZafodBeeblebrox("Zafod Beeblebrox", 2);

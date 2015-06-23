@@ -123,5 +123,5 @@ void	Form::execute(Bureaucrat const & executor) const {
 		throw Form::NotSignedException();
 	if (executor.getGrade() > requirementExec)
 		throw Form::GradeTooLowException();
-	// launch();
+	launch();
 }
