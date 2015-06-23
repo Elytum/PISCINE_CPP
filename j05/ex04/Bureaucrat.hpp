@@ -18,9 +18,9 @@ class Bureaucrat
 		int					getGrade( void ) const;
 		void				promote( void );
 		void				demote( void );
-		void				signForm( Form & formular ) const;
+		bool				signForm( Form & formular ) const;
+		bool				executeForm(Form const & form) const;
 		Bureaucrat&			operator=(Bureaucrat const & cpy);
-		void				executeForm(Form const & form);
 
 		class GradeTooHighException : public std::exception
 		{

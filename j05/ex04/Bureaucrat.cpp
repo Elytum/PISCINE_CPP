@@ -43,13 +43,14 @@ Bureaucrat&			Bureaucrat::operator=(Bureaucrat const & cpy)	{
 	return *this;
 }
 
-void				Bureaucrat::executeForm(Form const & form) {
+bool				Bureaucrat::executeForm(Form const & form) const	{
 	try {
 		form.execute(*this);
 		std::cout << "Bureaucrat " << name << " (Grade " << grade << ") executes a " << form.getName()
 		<<	" (s.grade " << form.getRequirementSign() << ", ex.grade " << form.getRequirementExec()
 		<< ") targeted on " << form.getTarget() << " (Signed)." << std::endl;
 		form.launch();
+		return true;
 	} catch (Form::GradeTooLowException) {
 		std::cout << "The formular " << form.getName() << " was not executed because it's executor grade is too low." << std::endl;
 	} catch (Form::NotSignedException) {
@@ -57,15 +58,10 @@ void				Bureaucrat::executeForm(Form const & form) {
 	} catch (std::exception) {
 		std::cout << "The formular " << form.getName() << " was not executed because of an unknown reason." << std::endl;
 	}
+	return false;
 }
 
-
-std::ostream&		operator<<(std::ostream& flux, Bureaucrat const & talking)	{
-	flux << talking.getName() << ", bureaucrat grade " << talking.getGrade() << "." << std::endl;
-	return (flux);
-}
-
-void				Bureaucrat::signForm( Form & form ) const {
+bool				Bureaucrat::signForm( Form & form ) const {
 	try {
 		bool	wasSigned = form.getWasSigned();
 
@@ -77,6 +73,7 @@ void				Bureaucrat::signForm( Form & form ) const {
 			std::cout << " (Signed)." << std::endl;
 		else
 			std::cout << " (Unsigned)." << std::endl;
+		return true;
 		
 	} catch (Form::GradeTooLowException) {
 		std::cout << "Bureaucrat " << name << " cannot sign " << form.getName() << " because his grade is too low (His grade is "
@@ -84,7 +81,14 @@ void				Bureaucrat::signForm( Form & form ) const {
 	} catch (std::exception) {
 		std::cout << "Bureaucrat " << name << " cannot sign " << form.getName() << " because of an unknown reason." << std::endl;
 	}
+	return false;
 }
+
+std::ostream&		operator<<(std::ostream& flux, Bureaucrat const & talking)	{
+	flux << talking.getName() << ", bureaucrat grade " << talking.getGrade() << "." << std::endl;
+	return (flux);
+}
+
 
 	//	Exception too high
 const char *Bureaucrat::GradeTooHighException::what( void ) const throw() {
