@@ -89,30 +89,23 @@ static std::string		talk_fn ( std::string const & kind ) {
 }
 
 
-SuperTrap::SuperTrap( std::string	name ) :	ClapTrap(name) {
+SuperTrap::SuperTrap( std::string	name ) :	ClapTrap(name),
+												NinjaTrap("NinjaTrap"),
+												FragTrap("FragTrap") {
 
 	std::cout << name << ": " << "INIT" << std::endl;
 	talk = talk_fn;
-	// hitPoints = 60;
-	// maxHitPoints = 60;
-	// energyPoints = 120;
-	// maxEnergyPoints = 120;
-	this->armorDamageReduction = 1;
-	// meleeAttackDamage = 60;
-	// rangedAttackDamage = 5;
-	// armorDamageReduction = 0;
-	// (void)level;
 }
 
-// void	SuperTrap::ninjaShoebox(std::string const & target) {
+void	SuperTrap::ninjaShoebox(std::string const & target) {
 
-// 	if (energyPoints < 25)
-// 		std::cout << name <<	": Like my old buddy used to say : \""\
-// 								"You must construct additional pylons\"."
-// 					<< std::endl;
-// 	else {
-// 		std::cout << name << ": Hey " << target << ", "\
-// 				<< talk("special") << std::endl;
-// 		energyPoints -= 25;
-// 	}
-// }
+	if (energyPoints < 25)
+		std::cout << name <<	": Like my old buddy used to say : \""\
+								"You must construct additional pylons\"."
+					<< std::endl;
+	else {
+		std::cout << name << ": Hey " << target << ", "\
+				<< talk("special") << std::endl;
+		energyPoints -= 25;
+	}
+}

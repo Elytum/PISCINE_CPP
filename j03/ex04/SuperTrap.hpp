@@ -6,7 +6,7 @@
 #include <iostream>
 #include <math.h>
 
-class SuperTrap : public NinjaTrap, FragTrap
+class SuperTrap : virtual public ClapTrap, public NinjaTrap, public FragTrap
 {
 	typedef  std::string (talkAction) (std::string const & target);
 
@@ -17,21 +17,21 @@ class SuperTrap : public NinjaTrap, FragTrap
 		void	ninjaShoebox(std::string const & target);
 		void	vaulthunter_dot_exe(std::string const & target);
 
-		using	FragTrap::rangedAttack;
-		using	NinjaTrap::meleeAttack;
+		using 	FragTrap::rangedAttack;
+		using 	NinjaTrap::meleeAttack;
 
 	private:
 		talkAction		*talk;
 
-		std::string		name;
-		using	FragTrap::hitPoints;
-		using	FragTrap::maxHitPoints;
-		using	NinjaTrap::energyPoints;
-		using	NinjaTrap::maxEnergyPoints;
-		using	NinjaTrap::meleeAttackDamage;
-		using	FragTrap::rangedAttackDamage;
-		using	FragTrap::armorDamageReduction;
-		using	FragTrap::level;
+		using	FragTrap::name;
+		using 	FragTrap::hitPoints;
+		using 	FragTrap::maxHitPoints;
+		using 	NinjaTrap::energyPoints;
+		using 	NinjaTrap::maxEnergyPoints;
+		using 	NinjaTrap::meleeAttackDamage;
+		using 	FragTrap::rangedAttackDamage;
+		using 	FragTrap::armorDamageReduction;
+		using 	FragTrap::level;
 };
 
 #endif

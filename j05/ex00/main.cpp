@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include <iostream>
 
 int			main(void)
 {
@@ -17,14 +16,14 @@ int			main(void)
 	try {
 		Bureaucrat	someone_too_low("Someone", 200);
 		std::cout << someone_too_low;
-	} catch (std::exception & e) {
+	} catch (Bureaucrat::GradeTooLowException & e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
 	try {
-		Bureaucrat	someone_too_low("Someone", 0);
-		std::cout << someone_too_low;
-	} catch (std::exception & e) {
+		Bureaucrat	someone_too_high("Someone", 0);
+		std::cout << someone_too_high;
+	} catch (Bureaucrat::GradeTooHighException & e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
@@ -34,7 +33,7 @@ int			main(void)
 			somebody.promote();
 			std::cout << somebody;
 		}
-	} catch (std::exception & e) {
+	} catch (Bureaucrat::GradeTooHighException & e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
@@ -44,7 +43,7 @@ int			main(void)
 			somebody.demote();
 			std::cout << somebody;
 		}
-	} catch (std::exception & e) {
+	} catch (Bureaucrat::GradeTooLowException & e) {
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 }
