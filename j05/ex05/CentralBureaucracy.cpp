@@ -8,6 +8,7 @@ CentralBureaucracy::~CentralBureaucracy() {
 	if (!queueContent)
 		return ;
 	delete [] queueContent;
+	--queueLen;
 	while (true) {
 		delete generatedInterns[queueLen];
 		if (queueLen-- == 0)
@@ -36,12 +37,12 @@ void	CentralBureaucracy::feed(Bureaucrat & newOne) {
 	int		i = pos / 2;
 	if (!(pos & 0b00000000000000000000000000000001)) {
 		generatedInterns[i] = new Intern();
-		blocks[i].setIntern(*generatedInterns[pos]);
+		blocks[i].setIntern(*generatedInterns[i]);
 		blocks[i].setSigner(newOne);
 	} else {
 		blocks[i].setExecutor(newOne);
 	}
-	pos++;
+	++pos;
 }
 
 void	CentralBureaucracy::doBureaucracy( void ) {
@@ -65,7 +66,8 @@ void	CentralBureaucracy::doBureaucracy( void ) {
 		std::cout << "No Bureaucrats to use." << std::endl;
 		return ;
 	}
-	--queueLen;
+	if (--queueLen == 0)
+		return ;
 	while (true) {
 		choice = rand() % 3;
 		try {
