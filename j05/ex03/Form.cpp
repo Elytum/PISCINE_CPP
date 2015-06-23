@@ -1,5 +1,4 @@
 #include "Form.hpp"
-#include <stdexcept>
 
 void				Form::checkGrade( void ) const {
 	if (requirementSign < 1)
