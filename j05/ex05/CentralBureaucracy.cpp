@@ -33,12 +33,13 @@ void	CentralBureaucracy::queueUp(std::string const & target) {
 void	CentralBureaucracy::feed(Bureaucrat & newOne) {
 	if (pos >= CentralBureaucracy::nbBlocks * 2)
 		return ;
+	int		i = pos / 2;
 	if (!(pos & 0b00000000000000000000000000000001)) {
-		generatedInterns[pos] = new Intern();
-		blocks[pos].setIntern(*generatedInterns[pos]);
-		blocks[pos / 2].setSigner(newOne);
+		generatedInterns[i] = new Intern();
+		blocks[i].setIntern(*generatedInterns[pos]);
+		blocks[i].setSigner(newOne);
 	} else {
-		blocks[pos / 2].setExecutor(newOne);
+		blocks[i].setExecutor(newOne);
 	}
 	pos++;
 }
@@ -64,17 +65,19 @@ void	CentralBureaucracy::doBureaucracy( void ) {
 		std::cout << "No Bureaucrats to use." << std::endl;
 		return ;
 	}
-	
+	--queueLen;
 	while (true) {
 		choice = rand() % 3;
 		try {
-		if (choice == 0)
+			if (choice == 0)
 				blocks[officeID].doBureaucracy("presidential pardon", queueContent[queueLen]);
 			else if (choice == 1)
 				blocks[officeID].doBureaucracy("robotomy request", queueContent[queueLen]);
-			else if (choice == 2)
+			else
 				blocks[officeID].doBureaucracy("shrubbery creation", queueContent[queueLen]);
+		} catch (OfficeBlock::UnknownForm) {
 		} catch (OfficeBlock::CantSign) {
+		} catch (OfficeBlock::CantExec) {
 		}
 		if (queueLen-- == 0)
 			break ;
