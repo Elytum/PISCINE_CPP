@@ -43,7 +43,7 @@ void		OfficeBlock::doBureaucracy(std::string const & name, std::string const & t
 
 	//	Exception unknown form
 const char *OfficeBlock::UnknownForm::what( void ) const throw() {
-	return ("OfficeBlock: UnnownForm");
+	return ("OfficeBlock: UnknownForm");
 }
 
 OfficeBlock::UnknownForm::UnknownForm( void ) : std::exception() {
