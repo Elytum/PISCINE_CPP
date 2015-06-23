@@ -14,8 +14,8 @@ int			main(void)
 	ob.setExecutor(hermes);
 	// try
 	// {
-	// ob.doBureaucracy("shrubbery creation", "Pigley");
-	ob.doBureaucracy("unknown", "Pigley");
+	ob.doBureaucracy("shrubbery creation", "Pigley");
+	// ob.doBureaucracy("unknown", "Pigley");
 	// }
 	// catch (Some::SpecificException & e)
 	// {

@@ -10,13 +10,13 @@ Form*	Intern::makeForm(std::string const & formKind, std::string const & target)
 	Form	*form;
 
 	if (formKind == "presidential pardon") {
-		std::cout << "Intern creates a Presidential Pardon Form " << std::endl;
+		std::cout << "Intern creates a Presidential Pardon Form ";
 		form = new PresidentialPardonForm(target);
 	} else if (formKind == "robotomy request") {
-		std::cout << "Intern creates a Robotomy Request Form " << std::endl;
+		std::cout << "Intern creates a Robotomy Request Form ";
 		form = new RobotomyRequestForm(target);
 	} else if (formKind == "shrubbery creation") {
-		std::cout << "Intern creates a Shrubbery Creation Form " << std::endl;
+		std::cout << "Intern creates a Shrubbery Creation Form ";
 		form = new ShrubberyCreationForm(target);
 	} else {
 		std::cout << "Intern doesn't know the " << formKind << " form." << std::endl;
