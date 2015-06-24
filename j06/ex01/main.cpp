@@ -43,16 +43,21 @@ void	*serialize( void ) {
 	extractRand(serialized->s1);
 	extractRand(serialized->s1 + sizeof(int));
 	serialized->n = rand();
+	if (rand() % 2 == 1)
+		serialized->n |= 1 << (sizeof(int) * 8 - 1);
 	extractRand(serialized->s2);
 	extractRand(serialized->s2 + sizeof(int));
 
 																if (DEBUG) {
-																	std::cout	<< "Before: s1: '" << serialized->s1 << "'" << std::endl
+																	std::string	s1;
+																	(s1 = serialized->s1).resize(8);
+																	std::string	s2;
+																	(s2 = serialized->s1).resize(8);
+																	std::cout	<< "Before: s1: '" << s1 << "'" << std::endl
 																				<< "n: '" << serialized->n << "'" << std::endl
-																				<< "s2: '" << serialized->s2 << "'" << std::endl
+																				<< "s2: '" << s2 << "'" << std::endl
 																				<< std::endl;
 																}
-
 	return reinterpret_cast<void *>(serialized);
 }
 
@@ -71,9 +76,7 @@ Data	*deserialize( void * raw ) {
 															if (DEBUG)
 																std::cout	<< "After: s1: '" << deserialized->s1 << "'" << std::endl
 																			<< "n: '" << deserialized->n << "'" << std::endl
-																			<< "s2: '" << deserialized->s2 << "'" << std::endl
-																			<< std::endl;
-
+																			<< "s2: '" << deserialized->s2 << "'" << std::endl;
 	return (deserialized);
 }
 
