@@ -50,9 +50,9 @@ void	*serialize( void ) {
 
 																if (DEBUG) {
 																	std::string	s1;
-																	(s1 = serialized->s1).resize(8);
+																	(s1 = reinterpret_cast<char *>(serialized->s1)).resize(8);
 																	std::string	s2;
-																	(s2 = serialized->s2).resize(8);
+																	(s2 = reinterpret_cast<char *>(serialized->s2)).resize(8);
 																	std::cout	<< "Before:" << std::endl
 																				<< "s1: '" << s1 << "'" << std::endl
 																				<< "n: '" << serialized->n << "'" << std::endl
