@@ -52,8 +52,9 @@ void	*serialize( void ) {
 																	std::string	s1;
 																	(s1 = serialized->s1).resize(8);
 																	std::string	s2;
-																	(s2 = serialized->s1).resize(8);
-																	std::cout	<< "Before: s1: '" << s1 << "'" << std::endl
+																	(s2 = serialized->s2).resize(8);
+																	std::cout	<< "Before:" << std::endl
+																				<< "s1: '" << s1 << "'" << std::endl
 																				<< "n: '" << serialized->n << "'" << std::endl
 																				<< "s2: '" << s2 << "'" << std::endl
 																				<< std::endl;
@@ -69,14 +70,8 @@ Data	*deserialize( void * raw ) {
 	char		*randomArray2 = array + sizeof(int) + 8;
 	
 	(deserialized->s1 = randomArray1).resize(8);
-	int *pi = reinterpret_cast<int *>(array + 8);
-	deserialized->n = *pi;
+	deserialized->n = *(reinterpret_cast<int *>(array + 8));
 	(deserialized->s2 = randomArray2).resize(8);
-
-															if (DEBUG)
-																std::cout	<< "After: s1: '" << deserialized->s1 << "'" << std::endl
-																			<< "n: '" << deserialized->n << "'" << std::endl
-																			<< "s2: '" << deserialized->s2 << "'" << std::endl;
 	return (deserialized);
 }
 
@@ -84,6 +79,10 @@ int		main(void)
 {
 	Data	*sample = deserialize(serialize());
 
-	(void)sample;
+	if (DEBUG)
+		std::cout	<< "After:" << std::endl
+					<< "s1: '" << sample->s1 << "'" << std::endl
+					<< "n: '" << sample->n << "'" << std::endl
+					<< "s2: '" << sample->s2 << "'" << std::endl;
 	return (0);
 }
