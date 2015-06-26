@@ -7,6 +7,10 @@ Span::Span( unsigned int const & N ) : _size(N), _pos(0)	{
 	_content.resize(N);
 }
 
+Span::Span( Span const & cpy ) : _size(cpy.getSize())	{
+	*this = cpy;
+}
+
 Span::~Span( void )	{
 }
 
@@ -18,6 +22,10 @@ void	Span::addNumber( int const & value ) {
 
 unsigned int	Span::getSize( void ) const	{
 	return _size;
+}
+
+unsigned int	Span::getPos( void ) const	{
+	return _pos;
 }
 
 int				Span::getElement( unsigned int position ) const {
@@ -40,11 +48,13 @@ int				Span::shortestSpan( void ) const {
 		throw Span::TooLittle();
 
 	int	span = DIF(_content[0], _content[1]);
+	int	tmp;
 	for (unsigned int x = 0; x < _size; ++x) {
 		for (unsigned int y = 0; y < _size; ++y) {
 			if (x == y)
 				continue;
-			int	tmp = DIF(_content[x], _content[y]);
+			if ((tmp = DIF(_content[x], _content[y])) == 0)
+				return (0);
 			if (tmp < span)
 				span = tmp;
 		}
@@ -65,6 +75,14 @@ int				Span::longestSpan( void ) const {
 			min = _content[i];
 	}
 	return (ABS(max - min));
+}
+
+Span&			Span::operator=(Span const & cpy)	{
+	_content.resize(_size);
+	_pos = cpy.getPos();
+	for (unsigned int i = 0; i < _size; ++i)
+		_content[i] = cpy.getElement(i);
+	return *this;
 }
 
 	//	Exception AddOutOfRange

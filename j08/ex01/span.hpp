@@ -5,22 +5,24 @@ class Span
 {
 	public:
 		Span( unsigned int const & N );
-		
-	// template <typename T>
-	// Span( T const & container ) {
-	// 	for ( typename T::iterator current = container.begin(); current != container.end(); ++ current )
-	// 		addNumber(*current);
-	// }
-		
-		// Span( Span const & cpy );
+		Span( Span const & cpy );
 		~Span( void );
 
 		void	addNumber( int const & value );
 
+		template <typename T>
+		void	addNumber( T const & container ) {
+			for ( typename T::const_iterator current = container.begin(); current != container.end(); ++current )
+				addNumber(*current);
+		}
+
 		unsigned int	getSize( void ) const;
+		unsigned int	getPos( void ) const;
 		int				getElement( unsigned int position ) const;
 		int				shortestSpan( void ) const;
 		int				longestSpan( void ) const;
+
+		Span&			operator=(Span const & cpy);
 
 		class AddOutOfRange : public std::exception
 		{
